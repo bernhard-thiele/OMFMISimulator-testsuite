@@ -1,0 +1,6 @@
+binaries/
+sources/
+modelDescription.xml
+*_diff.csv
+omsllog.txt
+omslresults.csv
