@@ -2,6 +2,7 @@ TEST = ../rtest -v
 
 TESTFILES = \
 test1.mos \
+BouncingBall.mos \
 
 # These tests are OS dependent. Move up when fixed.
 # Run make failingtest
@@ -10,6 +11,7 @@ FAILINGTESTFILES = \
 # Dependency files that are not .mo .mos or Makefile
 # Add them here or they will be cleaned.
 DEPENDENCIES = \
+*_res.csv \
 *_res.mat \
 *.fmu \
 *.mos \
