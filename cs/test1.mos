@@ -12,8 +12,8 @@ vars := {
 };
 
 system("../../build/bin/OMSimulator test1.fmu"); getErrorString();
-res := OpenModelica.Scripting.compareSimulationResults("test1_res.mat",
-  "omslresults.csv", "test1_diff.csv", 0.01, 0.0001, vars); getErrorString();
+res := OpenModelica.Scripting.compareSimulationResults("ReferenceFiles/test1_res.mat",
+  "test1_res.csv", "test1_diff.csv", 0.01, 0.0001, vars); getErrorString();
 
 // Result:
 // {"x"}

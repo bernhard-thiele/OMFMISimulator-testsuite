@@ -11,13 +11,11 @@ FAILINGTESTFILES = \
 # Dependency files that are not .mo .mos or Makefile
 # Add them here or they will be cleaned.
 DEPENDENCIES = \
-*_res.csv \
-*_res.mat \
 *.fmu \
 *.mos \
 Makefile \
 README.md \
-rtest \
+ReferenceFiles \
 
 CLEAN = `ls | grep -w -v -f deps.tmp`
 
