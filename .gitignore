@@ -1,6 +1,10 @@
-binaries/
-sources/
-modelDescription.xml
+# generated files
 *_diff.csv
+*_res.csv
+*.log
 omsllog.txt
-omslresults.csv
+
+# FMU files
+binaries/
+modelDescription.xml
+sources/

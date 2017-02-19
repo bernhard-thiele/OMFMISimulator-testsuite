@@ -31,7 +31,7 @@ vars := {
 };
 
 system("../../build/bin/OMSimulator BouncingBall.fmu"); getErrorString();
-res := OpenModelica.Scripting.compareSimulationResults("ReferenceFiles/BouncingBall_res.csv",
+res := OpenModelica.Scripting.compareSimulationResults("ReferenceFiles/BouncingBall.csv",
   "BouncingBall_res.csv", "BouncingBall_diff.csv", 0.01, 0.0001, vars); getErrorString();
 
 // Result:
