@@ -1,0 +1,44 @@
+// name: BouncingBall
+// status: correct
+
+//model BouncingBall
+//  parameter Real e=0.95;
+//  parameter Real g=9.81;
+//  Real h(start=1, fixed=true);
+//  Real v;
+//  Real ground(start=0, fixed=true);
+//equation
+//  der(v) = -g;
+//  der(h) = v;
+//
+//  when h < ground then
+//    reinit(v, -e*pre(v));
+//  end when;
+//
+//  when sample(1.0, 1.0) then
+//    ground = pre(ground) + 0.1;
+//  end when;
+//
+//  annotation(experiment(StartTime=0.0, StopTime=5.0));
+//end BouncingBall;
+
+vars := {
+  "v",
+  "der(v)",
+  "h",
+  "der(h)",
+  "ground"
+};
+
+system("../../build/bin/OMSimulator BouncingBall.fmu"); getErrorString();
+res := OpenModelica.Scripting.compareSimulationResults("BouncingBall_res.csv",
+  "omslresults.csv", "BouncingBall_diff.csv", 0.01, 0.0001, vars); getErrorString();
+
+// Result:
+// {"v","der(v)","h","der(h)","ground"}
+// Logging information has been saved to "omsllog.txt"
+// 0
+// ""
+// {"Files Equal!"}
+// ""
+// endResult

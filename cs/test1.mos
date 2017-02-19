@@ -1,0 +1,25 @@
+// name: test1
+// status: correct
+
+//model test1
+//  Real x(start=4.0, fixed=true);
+//equation
+//  der(x) = -x;
+//end test1;
+
+vars := {
+  "x"
+};
+
+system("../../build/bin/OMSimulator test1.fmu"); getErrorString();
+res := OpenModelica.Scripting.compareSimulationResults("test1_res.mat",
+  "omslresults.csv", "test1_diff.csv", 0.01, 0.0001, vars); getErrorString();
+
+// Result:
+// {"x"}
+// Logging information has been saved to "omsllog.txt"
+// 0
+// ""
+// {"Files Equal!"}
+// ""
+// endResult
