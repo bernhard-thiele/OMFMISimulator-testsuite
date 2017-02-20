@@ -13,4 +13,4 @@ cs:
 clean:
 	@$(MAKE) -C me clean
 	@$(MAKE) -C cs clean
-	@rm *.log
+	@rm -f *.log
