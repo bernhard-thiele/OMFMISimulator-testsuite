@@ -30,7 +30,7 @@ vars := {
   "ground"
 };
 
-system("../../build/bin/OMSimulator BouncingBall.fmu"); getErrorString();
+system("../../install/bin/OMSimulator BouncingBall.fmu"); getErrorString();
 res := OpenModelica.Scripting.compareSimulationResults("ReferenceFiles/BouncingBall.csv",
   "BouncingBall_res.csv", "BouncingBall_diff.csv", 0.01, 0.0001, vars); getErrorString();
 
