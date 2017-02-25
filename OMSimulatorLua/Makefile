@@ -1,13 +1,15 @@
 TEST = ../rtestLua -v
 
 TESTFILES = \
+me_test1.lua \
+me_BouncingBall.lua \
 cs_test1.lua \
+cs_BouncingBall.lua \
 
-# These tests are OS dependent. Move up when fixed.
 # Run make failingtest
 FAILINGTESTFILES = \
 
-# Dependency files that are not .mo .mos or Makefile
+# Dependency files that are not .lua or Makefile
 # Add them here or they will be cleaned.
 DEPENDENCIES = \
 *.lua \

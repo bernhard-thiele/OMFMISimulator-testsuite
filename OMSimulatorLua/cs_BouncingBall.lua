@@ -1,5 +1,5 @@
 #!/usr/bin/lua
--- name: cs_test1
+-- name: cs_BouncingBall
 -- status: correct
 
 package.cpath = package.cpath .. ';../../install/lib/libOMSimulatorLua.so'
@@ -13,7 +13,7 @@ print("\n# setWorkingDirectory")
 setWorkingDirectory(".")
 
 print("\n# loadModel")
-fmu = loadModel("../FMUs/cs_test1.fmu")
+fmu = loadModel("../FMUs/cs_BouncingBall.fmu")
 
 print("\n# describe")
 describe(fmu)
@@ -39,9 +39,9 @@ unload(fmu)
 --
 -- # describe
 -- FMI version: 2.0
--- Model name: test1
--- GUID: {d8c3f2b4-f180-4ffd-a32c-cdd07602b7bc}
--- Model identifier for CS: test1
+-- Model name: BouncingBall
+-- GUID: {b66c08d9-a87a-41ea-aed4-3275f6000fde}
+-- Model identifier for CS: BouncingBall
 --
 -- # setStopTime
 --

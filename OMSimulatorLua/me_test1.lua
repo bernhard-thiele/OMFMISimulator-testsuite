@@ -1,5 +1,5 @@
 #!/usr/bin/lua
--- name: cs_test1
+-- name: me_test1
 -- status: correct
 
 package.cpath = package.cpath .. ';../../install/lib/libOMSimulatorLua.so'
@@ -13,7 +13,7 @@ print("\n# setWorkingDirectory")
 setWorkingDirectory(".")
 
 print("\n# loadModel")
-fmu = loadModel("../FMUs/cs_test1.fmu")
+fmu = loadModel("../FMUs/me_test1.fmu")
 
 print("\n# describe")
 describe(fmu)
@@ -40,8 +40,8 @@ unload(fmu)
 -- # describe
 -- FMI version: 2.0
 -- Model name: test1
--- GUID: {d8c3f2b4-f180-4ffd-a32c-cdd07602b7bc}
--- Model identifier for CS: test1
+-- GUID: {ca6102fd-e542-45b3-8990-6feac45dc944}
+-- Model identifier for ME: test1
 --
 -- # setStopTime
 --
