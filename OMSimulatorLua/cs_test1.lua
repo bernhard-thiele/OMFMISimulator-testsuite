@@ -5,11 +5,11 @@
 package.cpath = package.cpath .. ';../../install/lib/libOMSimulatorLua.so'
 require("libOMSimulatorLua")
 
-print("# getVersion")
-version = getVersion()
-print(version)
+-- print("# getVersion")
+-- version = getVersion()
+-- print(version)
 
-print("\n# setWorkingDirectory")
+print("# setWorkingDirectory")
 setWorkingDirectory(".")
 
 print("\n# loadModel")
@@ -31,9 +31,6 @@ print("\n# unload")
 unload(fmu)
 
 -- Result:
--- # getVersion
--- OMSimulator v0.0.0-33-gd19ec16
---
 -- # setWorkingDirectory
 --
 -- # loadModel
