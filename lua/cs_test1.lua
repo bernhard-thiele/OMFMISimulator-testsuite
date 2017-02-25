@@ -1,6 +1,6 @@
 #!/usr/bin/lua
-package.cpath = package.cpath .. ';../../install/lib/libluaOMSimulator.so'
-require("libluaOMSimulator")
+package.cpath = package.cpath .. ';../../install/lib/libOMSimulatorLua.so'
+require("libOMSimulatorLua")
 
 print("# getVersion")
 version = getVersion()
