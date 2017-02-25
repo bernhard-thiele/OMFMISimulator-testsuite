@@ -1,4 +1,7 @@
 #!/usr/bin/lua
+-- name: cs_test1
+-- status: correct
+
 package.cpath = package.cpath .. ';../../install/lib/libOMSimulatorLua.so'
 require("libOMSimulatorLua")
 
@@ -26,3 +29,27 @@ simulate(fmu)
 
 print("\n# unload")
 unload(fmu)
+
+-- Result:
+-- # getVersion
+-- OMSimulator v0.0.0-33-gd19ec16
+--
+-- # setWorkingDirectory
+--
+-- # loadModel
+--
+-- # describe
+-- FMI version: 2.0
+-- Model name: test1
+-- GUID: {d8c3f2b4-f180-4ffd-a32c-cdd07602b7bc}
+-- Model identifier for CS: test1
+--
+-- # setStopTime
+--
+-- # setTolerance
+--
+-- # simulate
+--
+-- # unload
+-- Logging information has been saved to "omsllog.txt"
+-- endResult

@@ -1,4 +1,4 @@
-TEST = lua
+TEST = ../rtestLua -v
 
 TESTFILES = \
 cs_test1.lua \
@@ -21,8 +21,6 @@ CLEAN = `ls | grep -w -v -f deps.tmp`
 test:
 	@echo
 	@echo Running tests...
-	@echo
-	@echo "OPENMODELICAHOME = $(OPENMODELICAHOME)"
 	@$(TEST) $(TESTFILES)
 
 # Cleans all files that are not listed as dependencies
