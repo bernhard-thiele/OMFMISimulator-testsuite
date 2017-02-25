@@ -1,8 +1,10 @@
 TEST = ../rtest -v
 
 TESTFILES = \
-test1.mos \
-BouncingBall.mos \
+me_test1.mos \
+me_BouncingBall.mos \
+cs_test1.mos \
+cs_BouncingBall.mos \
 
 # These tests are OS dependent. Move up when fixed.
 # Run make failingtest
@@ -11,11 +13,9 @@ FAILINGTESTFILES = \
 # Dependency files that are not .mo .mos or Makefile
 # Add them here or they will be cleaned.
 DEPENDENCIES = \
-*.fmu \
 *.mos \
 Makefile \
 README.md \
-ReferenceFiles \
 
 CLEAN = `ls | grep -w -v -f deps.tmp`
 

@@ -1,8 +1,7 @@
-TEST = ../rtest -v
+TEST = lua
 
 TESTFILES = \
-test1.mos \
-BouncingBall.mos \
+cs_test1.lua \
 
 # These tests are OS dependent. Move up when fixed.
 # Run make failingtest
@@ -11,11 +10,9 @@ FAILINGTESTFILES = \
 # Dependency files that are not .mo .mos or Makefile
 # Add them here or they will be cleaned.
 DEPENDENCIES = \
-*.fmu \
-*.mos \
+*.lua \
 Makefile \
 README.md \
-ReferenceFiles \
 
 CLEAN = `ls | grep -w -v -f deps.tmp`
 

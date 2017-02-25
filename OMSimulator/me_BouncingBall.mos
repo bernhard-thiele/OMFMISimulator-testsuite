@@ -1,4 +1,4 @@
-// name: BouncingBall
+// name: me_BouncingBall
 // status: correct
 
 //model BouncingBall
@@ -30,8 +30,8 @@ vars := {
   "ground"
 };
 
-system("../../install/bin/OMSimulator BouncingBall.fmu"); getErrorString();
-res := OpenModelica.Scripting.compareSimulationResults("ReferenceFiles/BouncingBall.csv",
+system("../../install/bin/OMSimulator ../FMUs/me_BouncingBall.fmu"); getErrorString();
+res := OpenModelica.Scripting.compareSimulationResults("../ReferenceFiles/me_BouncingBall.csv",
   "BouncingBall_res.csv", "BouncingBall_diff.csv", 0.01, 0.0001, vars); getErrorString();
 
 // Result:

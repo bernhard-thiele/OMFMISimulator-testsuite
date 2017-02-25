@@ -1,4 +1,4 @@
-// name: test1
+// name: me_test1
 // status: correct
 
 //model test1
@@ -8,15 +8,16 @@
 //end test1;
 
 vars := {
-  "x"
+  "x",
+  "der(x)"
 };
 
-system("../../install/bin/OMSimulator test1.fmu"); getErrorString();
-res := OpenModelica.Scripting.compareSimulationResults("ReferenceFiles/test1.mat",
+system("../../install/bin/OMSimulator ../FMUs/me_test1.fmu"); getErrorString();
+res := OpenModelica.Scripting.compareSimulationResults("../ReferenceFiles/me_test1.mat",
   "test1_res.csv", "test1_diff.csv", 0.01, 0.0001, vars); getErrorString();
 
 // Result:
-// {"x"}
+// {"x","der(x)"}
 // Logging information has been saved to "omsllog.txt"
 // 0
 // ""

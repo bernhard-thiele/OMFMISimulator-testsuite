@@ -1,16 +1,15 @@
-.PHONY : all me cs clean
+.PHONY : all OMSimulator lua clean
 
-all: me cs
+all: OMSimulator
 
-me:
-	@$(MAKE) -C me > me.log
-	@grep == me.log
+OMSimulator:
+	@$(MAKE) -C OMSimulator > OMSimulator.log
+	@grep == OMSimulator.log
 
-cs:
-	@$(MAKE) -C cs > cs.log
-	@grep == cs.log
+lua:
+	@$(MAKE) -C lua | tee lua.log
 
 clean:
-	@$(MAKE) -C me clean
-	@$(MAKE) -C cs clean
+	@$(MAKE) -C OMSimulator clean
+	@$(MAKE) -C lua clean
 	@rm -f *.log

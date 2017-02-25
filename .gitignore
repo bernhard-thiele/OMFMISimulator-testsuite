@@ -3,8 +3,3 @@
 *_res.csv
 *.log
 omsllog.txt
-
-# FMU files
-binaries/
-modelDescription.xml
-sources/
