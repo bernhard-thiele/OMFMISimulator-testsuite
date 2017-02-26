@@ -36,7 +36,6 @@ res := OpenModelica.Scripting.compareSimulationResults("../ReferenceFiles/cs_Bou
 
 // Result:
 // {"v","der(v)","h","der(h)","ground"}
-// Logging information has been saved to "omsllog.txt"
 // 0
 // ""
 // {"Files Equal!"}

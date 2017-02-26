@@ -50,5 +50,4 @@ unload(fmu)
 -- # simulate
 --
 -- # unload
--- Logging information has been saved to "omsllog.txt"
 -- endResult

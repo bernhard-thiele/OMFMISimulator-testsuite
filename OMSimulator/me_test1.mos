@@ -18,7 +18,6 @@ res := OpenModelica.Scripting.compareSimulationResults("../ReferenceFiles/me_tes
 
 // Result:
 // {"x","der(x)"}
-// Logging information has been saved to "omsllog.txt"
 // 0
 // ""
 // {"Files Equal!"}
