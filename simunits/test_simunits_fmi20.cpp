@@ -9,11 +9,13 @@ using namespace simunits;
 
 int main() {
 
-  std::string modelpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/cs_BouncingBall.fmu";
+  //std::string modelpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/cs_BouncingBall.fmu";
+  //std::string modelpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/cs_PID_Controller.fmu";
+  std::string modelpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/me_BouncingBall.fmu";
 
   std::cout << "Creating simunit ..." << std::endl;
   fmi20::FMU20 simUnit(modelpath);
   std::cout << "Instantiated SimUnit name: " << simUnit.name << std::endl;
 
-  simUnit.simulate_cs();
+  simUnit.simulate();
 }
