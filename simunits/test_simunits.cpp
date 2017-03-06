@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "src/simunits/core/SimUnit.h"
+#include "src/simunits/fmi20/FMU20.h"
 #include "src/simunits/core/Port.h"
 #include "src/simunits/core/CompositeSimUnit.h"
 #include "src/simunits/core/Connector.h"
@@ -39,6 +39,7 @@ int main() {
   std::cout << "Connecting Connector to ports ..." << std::endl;
   connector.port_a(&port1);
   connector.port_b(&port2);
+
   std::cout << "Adding Connector to CompositeSimUnit ..." << std::endl;
   compositeSimUnit.connectors.push_back(connector);
 
