@@ -1,0 +1,11 @@
+loadString("
+model parameterTest
+  parameter Real p = 1.0;
+  Real x(start=p, fixed=true);
+equation
+  der(x) = -x;
+end parameterTest;
+"); getErrorString();
+
+buildModelFMU(parameterTest, version="2.0", fmuType="me", fileNamePrefix="me_parameterTest"); getErrorString();
+buildModelFMU(parameterTest, version="2.0", fmuType="cs", fileNamePrefix="cs_parameterTest"); getErrorString();

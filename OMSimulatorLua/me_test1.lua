@@ -40,8 +40,8 @@ unload(fmu)
 -- # describe
 -- FMI version: 2.0
 -- Model name: test1
--- GUID: {ca6102fd-e542-45b3-8990-6feac45dc944}
--- Model identifier for ME: test1
+-- GUID: {20db05bd-be73-4960-aaa8-ee4be1af214a}
+-- Model identifier for ME: me_test1
 --
 -- # setStopTime
 --

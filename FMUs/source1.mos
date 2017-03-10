@@ -1,0 +1,10 @@
+loadString("
+model source1
+  parameter Real A = 1.0;
+  parameter Real omega = 1.0;
+  output Real y = A*sin(omega*time);
+end source1;
+"); getErrorString();
+
+buildModelFMU(source1, version="2.0", fmuType="me", fileNamePrefix="me_source1"); getErrorString();
+buildModelFMU(source1, version="2.0", fmuType="cs", fileNamePrefix="cs_source1"); getErrorString();

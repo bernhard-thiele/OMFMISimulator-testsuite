@@ -1,0 +1,10 @@
+loadString("
+model adder1
+  input Real x1;
+  input Real x2;
+  output Real y = x1 + x2;
+end adder1;
+"); getErrorString();
+
+buildModelFMU(adder1, version="2.0", fmuType="me", fileNamePrefix="me_adder1"); getErrorString();
+buildModelFMU(adder1, version="2.0", fmuType="cs", fileNamePrefix="cs_adder1"); getErrorString();

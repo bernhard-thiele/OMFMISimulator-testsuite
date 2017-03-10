@@ -40,8 +40,8 @@ unload(fmu)
 -- # describe
 -- FMI version: 2.0
 -- Model name: BouncingBall
--- GUID: {73c6f0b5-4162-4f6d-86cf-e740bf59af0b}
--- Model identifier for ME: BouncingBall
+-- GUID: {6a7dc7ae-436f-49e4-95f0-4888b7618f70}
+-- Model identifier for ME: me_BouncingBall
 --
 -- # setStopTime
 --

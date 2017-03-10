@@ -1,12 +1,6 @@
 // name: me_test1
 // status: correct
 
-//model test1
-//  Real x(start=4.0, fixed=true);
-//equation
-//  der(x) = -x;
-//end test1;
-
 vars := {
   "x",
   "der(x)"

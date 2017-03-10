@@ -1,0 +1,10 @@
+loadString("
+model test1
+  Real x(start=4.0, fixed=true);
+equation
+  der(x) = -x;
+end test1;
+"); getErrorString();
+
+buildModelFMU(test1, version="2.0", fmuType="me", fileNamePrefix="me_test1"); getErrorString();
+buildModelFMU(test1, version="2.0", fmuType="cs", fileNamePrefix="cs_test1"); getErrorString();

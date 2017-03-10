@@ -1,0 +1,25 @@
+loadString("
+model BouncingBall
+  parameter Real e=0.95;
+  parameter Real g=9.81;
+  Real h(start=1, fixed=true);
+  Real v;
+  Real ground(start=0, fixed=true);
+equation
+  der(v) = -g;
+  der(h) = v;
+
+  when h < ground then
+    reinit(v, -e*pre(v));
+  end when;
+
+  when sample(1.0, 1.0) then
+    ground = pre(ground) + 0.1;
+  end when;
+
+  annotation(experiment(StartTime=0.0, StopTime=5.0));
+end BouncingBall;
+"); getErrorString();
+
+buildModelFMU(BouncingBall, version="2.0", fmuType="me", fileNamePrefix="me_BouncingBall"); getErrorString();
+buildModelFMU(BouncingBall, version="2.0", fmuType="cs", fileNamePrefix="cs_BouncingBall"); getErrorString();
