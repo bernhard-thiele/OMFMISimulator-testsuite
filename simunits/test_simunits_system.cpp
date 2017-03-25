@@ -35,32 +35,22 @@ int main() {
   std::cout << "adder os: " << adder << std::endl;
 
   std::cout << "Creating simunits container ..." << std::endl;
-  system::CompositeSimUnit::SimUnitsContainer simunits;
-  simunits.push_back(&sourceA);
-  simunits.push_back(&sourceB);
-  simunits.push_back(&adder);
-
-  std::cout << "Extracting ports of sourceA ..." << std::endl;
-  fmi20::FMU20::PortContainer* sourceAports = sourceA.ports();
-  std::cout << "Extracting ports of sourceB ..." << std::endl;
-  fmi20::FMU20::PortContainer* sourceBports = sourceB.ports();
-  std::cout << "Extracting ports of adder ..." << std::endl;
-  fmi20::FMU20::PortContainer* adderports = adder.ports();
+  system::CompositeSimUnit::SimUnitsContainer simunits = {&sourceA, &sourceB, &adder};
 
   std::cout << "Create connection sourceA.y -> adder.x1 ..." << std::endl;
-  system::Connector c_sourceA_y__adder_x1(sourceAports->at(0), adderports->at(0), "sourceA.y->adder.x1");
+  //system::Connector c_sourceA_y__adder_x1(sourceAports->at(0), adderports->at(0), "sourceA.y->adder.x1");
+  system::Connector c_sourceA_y__adder_x1(sourceA.ports()->at(0), adder.ports()->at(0), "sourceA.y->adder.x1");
   std::cout << "c_sourceA_y__adder_x1: " << c_sourceA_y__adder_x1 << std::endl;
 
   std::cout << "Create connection sourceB.y -> adder.x2 ..." << std::endl;
-  system::Connector c_sourceB_y__adder_x2(sourceBports->at(0), adderports->at(1), "sourceB.y->adder.x2");
+  system::Connector c_sourceB_y__adder_x2(sourceB.ports()->at(0), adder.ports()->at(1), "sourceB.y->adder.x2");
   std::cout << "c_sourceB_y__adder_x1: " << c_sourceB_y__adder_x2 << std::endl;
 
   std::cout << "Creating connectors container ..." << std::endl;
-  system::CompositeSimUnit::ConnectorsContainer connectors;
-  connectors.push_back(&c_sourceA_y__adder_x1);
-  connectors.push_back(&c_sourceB_y__adder_x2);
+  system::CompositeSimUnit::ConnectorsContainer connectors = {&c_sourceA_y__adder_x1, &c_sourceB_y__adder_x2};
 
   std::cout << "Creating composite ..." << std::endl;
+  //system::CompositeSimUnit::PortContainer* pmyports = fmu20.ports();
   system::CompositeSimUnit composite(&simunits, &connectors);
   std::cout << "composite os: " << composite << std::endl;
 
