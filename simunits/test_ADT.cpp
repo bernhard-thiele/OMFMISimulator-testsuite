@@ -8,6 +8,16 @@
 #include <mach7/patterns/primitive.hpp>    // Wildcard, variable and value patterns
 
 struct Element { virtual ~Element() {} };
+struct Access : Element { virtual ~Access() {} };
+struct IdnUse : Access {
+  std::string name;
+  IdnUse(const char* n) : name(n) {}
+};
+struct Dot : Access {
+  Access* ref;
+  IdnUse* idnUse;
+  Dot(Access* r, IdnUse* i) : ref(r), idnUse(i) {}
+};
 struct Port : Element {
   std::string name;
   Port(const char* n) : name(n) {}
@@ -18,27 +28,28 @@ struct Simunit : Element {
   Simunit(const char* n, std::vector<Port*>*  p) : name(n), ports(p) {}
 };
 struct Connection : Element {
-  std::string name;
-  Port* port_a;
-  Port* port_b;
-  Connection(const char* n, Port* a, Port* b) : name(n), port_a(a), port_b(b) {}
+  Access* port_a;
+  Access* port_b;
+  Connection(Access* a, Access* b) : port_a(a), port_b(b) {}
 };
-struct System : Element {
-  std::string name;
-  std::vector<Port*>* ports;
+struct System : Simunit {
+  // std::string name; // from Simunit
+  // std::vector<Port*>* ports; // from Simunit
   std::vector<Simunit*>* simunits;
   std::vector<Connection*>* connections;
   System(const char* n, std::vector<Port*>* p, std::vector<Simunit*>* s, std::vector<Connection*>* c)
-    : name(n), ports(p), simunits(s), connections(c) {}
+    : Simunit(n,p), simunits(s), connections(c) {}
 };
 
 //------------------------------------------------------------------------------
 
 namespace mch ///< Mach7 library namespace
 {
+template <> struct bindings<IdnUse> { Members(IdnUse::name); };
+template <> struct bindings<Dot> { Members(Dot::ref, Dot::idnUse); };
 template <> struct bindings<Port> { Members(Port::name); };
 template <> struct bindings<Simunit> { Members(Simunit::name, Simunit::ports); };
-template <> struct bindings<Connection> { Members(Connection::name, Connection::port_a, Connection::port_b); };
+template <> struct bindings<Connection> { Members(Connection::port_a, Connection::port_b); };
 template <> struct bindings<System> { Members(System::name, System::ports, System::simunits, System::connections);  };
 } // of namespace mch
 
@@ -55,23 +66,17 @@ std::ostream& operator<<(std::ostream& os, const Element& t) {
   var<const std::vector<Port*>&> ps;
   var<const std::vector<Simunit*>&> sims;
   var<const std::vector<Connection*>&> cns;
+  var<const IdnUse&> idn1;
+  var<const Access&> a1, a2;
   var<const Element&> t1,t2;
 
 
   Match(t) {
     Case(C<Port>(str))       return os << "Port(name=" << str << ')';
-    Case(C<Simunit>(str,&ps))  {
-      auto ports = ps.m_value;
-      os << "Simunit(name=" << str << ", ports={";
-      for (auto i = ports->begin(); i != ports->end(); i++) {
-        if (i != ports->begin()) os << ", ";
-        os << *(*i);
-      }
-      return os << "})";
-    }
-    Case(C<Connection>(str,&pa,&pb))  {
-      return os << "Connection(name=" << str <<
-        ", port_a=" << pa << ", port_b=" << pb << ")";
+    Case(C<IdnUse>(str))     return os << "IdnUse(name=" << str << ')';
+    Case(C<Dot>(a1, idn1))   return os << "Dot(ref=" << a1 << ", idnUse=" << idn1 << ')';
+    Case(C<Connection>(&a1,&a2))  {
+      return os << "Connection(port_a=" << a1 << ", port_b=" << a2 << ")";
     }
     Case(C<System>(str,&ps,&sims,&cns)) {
       auto ports = ps.m_value;
@@ -94,6 +99,17 @@ std::ostream& operator<<(std::ostream& os, const Element& t) {
       }
       return os << "})";
     }
+    // "Simunit" matches also "System" => match after "System"!
+    Case(C<Simunit>(str,&ps))  {
+      auto ports = ps.m_value;
+      os << "Simunit(name=" << str << ", ports={";
+      for (auto i = ports->begin(); i != ports->end(); i++) {
+        if (i != ports->begin()) os << ", ";
+        os << *(*i);
+      }
+      return os << "})";
+    }
+
   }
   EndMatch
 
@@ -106,12 +122,12 @@ int main() {
     new std::vector<Port*>({new Port("p1")}),
     new std::vector<Simunit*>({
       new Simunit("mysimunit", new std::vector<Port*>({
-        new Port("asdf"),
-        new Port("fdsa")
+        new Port("ou1"),
+        new Port("out2")
       }))
     }),
     new std::vector<Connection*>({
-      new Connection("mycon", new Port("p1"), new Port("asdf"))
+      new Connection(new Dot(new IdnUse("mysimunit"), new IdnUse("out1")), new IdnUse("p1"))
     })
   );
   std::cout << *e << std::endl;
