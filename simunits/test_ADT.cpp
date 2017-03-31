@@ -25,6 +25,7 @@ struct Port : Element {
 struct Simunit : Element {
   std::string name;
   std::vector<Port*>*  ports;
+  double getReal() {return 2.3;}
   Simunit(const char* n, std::vector<Port*>*  p) : name(n), ports(p) {}
 };
 struct Connection : Element {
@@ -115,6 +116,13 @@ std::ostream& operator<<(std::ostream& os, const Element& t) {
 
   return os; // To prevent all control path warning
 }
+
+// maintain a symbol table which keeps the concrete classes?
+struct symboltable {
+  // (name, simunitVariant[FMU20ME, FMU20CS, TLM])
+  // (name, portVariant[ScalarRealOutput, ScalarRealInput])
+  // std::map<symboltable>* nested;
+};
 
 int main() {
   //Element* e = new Simunit("myname", new std::vector<Port*>({new Port("asdf"), new Port("fdsa")}));

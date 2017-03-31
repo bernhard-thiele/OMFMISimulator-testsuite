@@ -1,11 +1,10 @@
 #include <iostream>
 
-#include "src/simunits/fmi20/FMU20SimUnit.h"
-#include "src/simunits/fmi20/ImportContext.h"
+#include "src/simunits/fmi20/FMU20L.h"
 #include "src/simunits/system/CompositeSimUnit.h"
 #include "src/simunits/system/Connector.h"
 
-// #include "src/simunits/fmi20/OutputRealPort.h"
+#include "src/simunits/fmi20/OutputRealPortDeprecated.h"
 // #include "src/simunits/core/CompositeSimUnit.h"
 // #include "src/simunits/core/Connector.h"
 
@@ -15,20 +14,24 @@ using namespace simunits;
 
 int main() {
 
+  //std::string modelpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/cs_BouncingBall.fmu";
+  //std::string modelpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/cs_PID_Controller.fmu";
+  //std::string modelpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/me_BouncingBall.fmu";
+  // std::string modelpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/MyTestReal.fmu";
   std::string sourceApath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/me_source1.fmu";
   std::string sourceBpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/me_source1.fmu";
   std::string adderpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/me_adder1.fmu";
 
   std::cout << "Creating sourceA ..." << std::endl;
-  fmi20::FMU20SimUnit sourceA(new fmi20::ImportContext(sourceApath));
+  fmi20::FMU20L sourceA(sourceApath);
   std::cout << "sourceA os: " << sourceA << std::endl;
 
   std::cout << "Creating sourceB ..." << std::endl;
-  fmi20::FMU20SimUnit sourceB(new fmi20::ImportContext(sourceBpath));
+  fmi20::FMU20L sourceB(sourceBpath);
   std::cout << "sourceB os: " << sourceB << std::endl;
 
   std::cout << "Creating adder ..." << std::endl;
-  fmi20::FMU20SimUnit adder(new fmi20::ImportContext(adderpath));
+  fmi20::FMU20L adder(adderpath);
   std::cout << "adder os: " << adder << std::endl;
 
   std::cout << "Creating simunits container ..." << std::endl;
