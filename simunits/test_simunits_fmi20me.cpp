@@ -2,8 +2,6 @@
 #include <memory>
 
 #include "src/simunits/fmi20/FMU20ME.h"
-#include "src/simunits/stubs/SimController.h"
-
 #include "src/simunits/fmi20/SimUnitFMU20.h"
 
 #include "src/simunits/fmi20/FMU20SimUnit.h"
@@ -33,8 +31,5 @@ int main() {
   fmi20::FMU20SimUnit fmu20simunit(myimp);
   std::cout << "My name " << fmu20simunit.name() << std::endl;
   std::cout << fmu20simunit << std::endl;
-
-  stubs::SimController simctrl;
-  //simctrl.simulate(&fmu20);
 
 }

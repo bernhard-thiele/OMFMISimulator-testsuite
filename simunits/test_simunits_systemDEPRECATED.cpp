@@ -8,7 +8,7 @@
 // #include "src/simunits/core/CompositeSimUnit.h"
 // #include "src/simunits/core/Connector.h"
 
-#include "src/simunits/stubs/SimController.h"
+#include "src/simunits/stubs/SimControllerDEPRECATED.h"
 
 using namespace simunits;
 
@@ -54,6 +54,6 @@ int main() {
   system::CompositeSimUnit composite(&simunits, &connectors);
   std::cout << "composite os: " << composite << std::endl;
 
-  stubs::SimController simctrl;
+  stubs::SimControllerDEPRECATED simctrl;
   //??simctrl.simulate(&composite);
 }
