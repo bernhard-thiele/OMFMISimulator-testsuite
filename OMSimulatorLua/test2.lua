@@ -24,7 +24,10 @@ addConnection(model, "sourceB.y", "adder.x2")
 setReal(model, "sourceA.A", 0.5)
 setReal(model, "sourceA.omega", 2.0)
 
-exportDependencyGraph(model, "test")
+setStopTime(10.0)
+
+simulate(model)
+--exportDependencyGraph(model, "test")
 --describe(model)
 
 unload(model)

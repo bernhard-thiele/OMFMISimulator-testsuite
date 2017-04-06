@@ -9,9 +9,9 @@ vars := {
   "ground"
 };
 
-system("../../install/bin/OMSimulator ../FMUs/me_BouncingBall.fmu"); getErrorString();
+system("../../install/bin/OMSimulator ../FMUs/me_BouncingBall.fmu --resultFile=me_BouncingBall --stopTime=5.0"); getErrorString();
 res := OpenModelica.Scripting.compareSimulationResults("../ReferenceFiles/me_BouncingBall.csv",
-  "BouncingBall_res.csv", "BouncingBall_diff.csv", 0.01, 0.0001, vars); getErrorString();
+  "me_BouncingBall_fmu_res.csv", "BouncingBall_diff.csv", 0.01, 0.0001, vars); getErrorString();
 
 // Result:
 // {"v","der(v)","h","der(h)","ground"}
