@@ -8,14 +8,14 @@ require("libOMSimulatorLua")
 version = getVersion()
 -- print(version)
 
-setWorkingDirectory(".")
-
 model = newModel()
+setWorkingDirectory(model, ".")
+
 instantiateFMU(model, "../FMUs/cs_test1.fmu", "test1")
 describe(model)
 
-setStopTime(2.1)
-setTolerance(1e-5)
+setStopTime(model, 2.1)
+setTolerance(model, 1e-5)
 
 simulate(model)
 
