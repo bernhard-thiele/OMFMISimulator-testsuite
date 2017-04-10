@@ -10,13 +10,13 @@ vars := {
 };
 
 system("../../install/bin/OMSimulator ../FMUs/me_BouncingBall.fmu --resultFile=me_BouncingBall --stopTime=5.0"); getErrorString();
-res := OpenModelica.Scripting.compareSimulationResults("../ReferenceFiles/me_BouncingBall.csv",
-  "me_BouncingBall_fmu_res.csv", "BouncingBall_diff.csv", 0.01, 0.0001, vars); getErrorString();
+OpenModelica.Scripting.diffSimulationResults("../ReferenceFiles/me_BouncingBall.csv",
+  "me_BouncingBall_fmu_res.csv", "BouncingBall_diff", vars=vars); getErrorString();
 
 // Result:
 // {"v","der(v)","h","der(h)","ground"}
 // 0
 // ""
-// {"Files Equal!"}
+// (true,{})
 // ""
 // endResult

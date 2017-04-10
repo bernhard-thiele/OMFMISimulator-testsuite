@@ -6,13 +6,13 @@ vars := {
 };
 
 system("../../install/bin/OMSimulator ../FMUs/cs_test1.fmu --resultFile=cs_test1"); getErrorString();
-res := OpenModelica.Scripting.compareSimulationResults("../ReferenceFiles/cs_test1.mat",
-  "cs_test1_fmu_res.csv", "test1_diff.csv", 0.01, 0.0001, vars); getErrorString();
+OpenModelica.Scripting.diffSimulationResults("../ReferenceFiles/cs_test1.mat",
+  "cs_test1_fmu_res.csv", "test1_diff", vars=vars); getErrorString();
 
 // Result:
 // {"x"}
 // 0
 // ""
-// {"Files Equal!"}
+// (true,{})
 // ""
 // endResult
