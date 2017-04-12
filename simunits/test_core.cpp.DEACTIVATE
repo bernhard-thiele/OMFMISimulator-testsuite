@@ -1,0 +1,49 @@
+#include <iostream>
+
+#include "src/simunits/core/ICore.h"
+
+using namespace std;
+using namespace simunits::core;
+
+int main() {
+  cout << "hello world\n";
+  PortPtr p1 = make_shared<Port>("Port1");
+  auto p2 = make_shared<Port>("Port2");
+  cout << p1->toString() << " and " << p2->toString() << endl;
+
+  Simunit::PortContainerPtr portsptr(new Simunit::PortContainer({p1, p2}));
+  auto simunit1 = make_shared<Simunit>("Simunit1", portsptr);
+  cout << simunit1->toString() << endl;
+
+  auto il = {p1, p2};
+  SimunitPtr simunit2 = make_shared<Simunit>("Simunit2", il);
+  cout << "Using initializer_list: " << simunit2->toString() << endl;
+
+  // SimunitPtr simunit3 = make_shared<Simunit>("Port2", {p1, p2}); // Error!
+  // hm, can't use initializer_list with make_shared, but alternative works
+  SimunitPtr simunit3(new Simunit("Simunit3", {p1, p2}));
+  cout << "Not using make_shared: " << simunit3->toString() << endl;
+
+  System::SimunitContainerPtr simunitsptr(new System::SimunitContainer({simunit1}));
+  SystemPtr system1 = make_shared<System>("System1",
+    portsptr, simunitsptr);
+  cout << system1->toString() << endl;
+
+  SystemPtr system2(new System(
+    "System2",
+    {
+      make_shared<Port>("PortS1"), // variant using make_shared
+      shared_ptr<Port>(new Port("PortS2")) // variant using shared_ptr directly
+    },
+    {
+      shared_ptr<Simunit>(new Simunit(
+        "Simunit3",
+        {
+          make_shared<Port>("PortS3"),
+          make_shared<Port>("PortS4")
+        }
+      ))
+    }
+  ));
+  cout << system2->toString() << endl;
+}

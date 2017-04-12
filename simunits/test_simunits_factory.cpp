@@ -10,6 +10,8 @@
 
 #include "src/simunits/stubs/SimController.h"
 
+#include "src/simunits/ObjectFactory.h"
+
 using namespace simunits;
 using std::make_shared;
 using std::dynamic_pointer_cast;
@@ -22,18 +24,21 @@ int main() {
   std::string adderpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/me_adder1.fmu";
 
   std::cout << "Creating sourceA ..." << std::endl;
-  shared_ptr<fmi20::FMU20> sourceA(make_shared<fmi20::FMU20>(sourceApath, fmi20::kUnknown, "sourceA"));
+  shared_ptr<fmi20::FMU20> sourceA = createFMU20(sourceApath, fmi20::kUnknown, "sourceA");
   std::cout << "sourceA os: " << *sourceA << std::endl;
 
   std::cout << "Creating sourceB ..." << std::endl;
-  shared_ptr<fmi20::FMU20> sourceB(make_shared<fmi20::FMU20>(sourceBpath));
+  shared_ptr<fmi20::FMU20> sourceB = createFMU20(sourceBpath);
   std::cout << "sourceB os: " << *sourceB << std::endl;
 
   std::cout << "Creating adder ..." << std::endl;
-  shared_ptr<fmi20::FMU20> adder(make_shared<fmi20::FMU20>(adderpath));
+  shared_ptr<fmi20::FMU20> adder = createFMU20(adderpath);
   std::cout << "adder os: " << *adder << std::endl;
 
   std::cout << "Creating simunits container ..." << std::endl;
+  // system::CompositeSimUnit::SimunitsPtr simunitsp = createSimUnits({sourceA, sourceB, adder}); // NOPE
+  auto simunits2 = {sourceA, sourceB, adder};
+  // system::CompositeSimUnit::SimunitsPtr simunitsp = createSimUnits(simunits2); // NOPE
 
   system::CompositeSimUnit::Simunits simunits = {sourceA, sourceB, adder};
   system::CompositeSimUnit::SimunitsPtr simunitsptr(make_shared<system::CompositeSimUnit::Simunits>(simunits));
@@ -57,9 +62,8 @@ int main() {
   system::CompositeSimUnit::ConnectorsPtr connectorsptr = make_shared<system::CompositeSimUnit::Connectors>(connectors);
 
   std::cout << "Creating composite ..." << std::endl;
+  //system::CompositeSimUnit::PortContainer* pmyports = fmu20.ports();
   system::CompositeSimUnit composite(simunitsptr, connectorsptr);
-  // alternative constructor
-  system::CompositeSimUnit composite2({sourceA, sourceB, adder}, {c_sourceA_y__adder_x1, c_sourceB_y__adder_x2});
   std::cout << "composite os: " << composite << std::endl;
 
   std::cout << "sourceA.y.get: " << dynamic_pointer_cast<fmi20::OutputRealPort>(sourceA->ports()->at(0))->get() << std::endl;
