@@ -1,5 +1,6 @@
 #include <iostream>
 #include <memory>
+#include <algorithm>
 
 #include "src/simunits/fmi20/FMU20.h"
 
@@ -52,4 +53,45 @@ int main() {
   if (auto it = s2.port_find("dont exists") != s2.port_mapend()) {
     std::cout << "never get here\n";
   }
+
+  ///////////////////
+  std::cout << "TEST COMPARISON AND SORTING\n";
+  core::Idn idn1("idn1");
+  core::Idn idn2("idn2");
+  core::Idn idn3("idn3");
+  std::cout << "We have Idns " << idn1 << " " << idn2 << " " << idn3 << std::endl;
+  if (idn1 == idn2) std::cout << "UUPS " << idn1 << " == " << idn2 << std::endl;
+  if (idn1 == idn1) std::cout << idn1 << " == " << idn1 << std::endl;
+  if (idn1 < idn2) std::cout << idn1 << " < " << idn2 << std::endl;
+  if (idn3 < idn2) std::cout << "UUPS " << idn3 << " < " << idn2 << std::endl;
+  std::vector<core::Idn> idnvec{idn3, idn1, idn2};
+  for (auto a : idnvec) std::cout << ", " << a;
+  std::cout << std::endl;
+  std::sort(idnvec.begin(), idnvec.end());
+  for (auto a : idnvec) std::cout << ", " << a;
+  std::cout << std::endl;
+  core::Dot dot1(std::make_shared<core::Idn>("pre"),std::make_shared<core::Idn>("idn1"));
+  core::Dot dot2(std::make_shared<core::Idn>("pre"),std::make_shared<core::Idn>("idn2"));
+  core::Dot dot3(std::make_shared<core::Idn>("pzz"),std::make_shared<core::Idn>("idn1"));
+  std::cout << "We have Dots " << dot1 << "; " << dot2 << "; " << dot3 << std::endl;
+  if (dot1 == dot2) std::cout << "UUPS " << dot1 << " == " << dot2 << std::endl;
+  if (dot1 == dot1) std::cout << dot1 << " == " << dot1 << std::endl;
+  if (dot1 < dot2) std::cout << dot1 << " < " << dot2 << std::endl;
+  if (dot3 < dot1) std::cout << "UUPS " << dot3 << " < " << dot1 << std::endl;
+  if (dot3 < dot2) std::cout << "UUPS " << dot3 << " < " << dot2 << std::endl;
+  std::vector<core::Dot> dotvec{dot3, dot2, dot1};
+  for (auto a : dotvec) std::cout << ", " << a;
+  std::cout << std::endl;
+  std::sort(dotvec.begin(), dotvec.end());
+  for (auto a : dotvec) std::cout << ", " << a;
+  std::cout << "\nWe have DotPtrs\n";
+  auto dotptr1 = std::make_shared<core::Dot>(std::make_shared<core::Idn>("pre"),std::make_shared<core::Idn>("idn1"));
+  auto dotptr2 = std::make_shared<core::Dot>(std::make_shared<core::Idn>("pre"),std::make_shared<core::Idn>("idn2"));
+  auto dotptr3 = std::make_shared<core::Dot>(std::make_shared<core::Idn>("pzz"),std::make_shared<core::Idn>("idn1"));
+  std::vector<std::shared_ptr<core::Dot> > dotptr{dotptr3,dotptr2,dotptr1};
+  for (auto a : dotptr) std::cout << ", " << *a;
+  std::cout << std::endl;
+  std::sort(dotptr.begin(), dotptr.end(), [](std::shared_ptr<core::Identifier> a, std::shared_ptr<core::Identifier> b) {return *a < *b;});
+  for (auto a : dotptr) std::cout << ", " << *a;
+  std::cout << std::endl;
 }
