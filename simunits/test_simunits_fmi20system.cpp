@@ -2,7 +2,7 @@
 #include <memory>
 
 #include "src/simunits/fmi20/FMU20.h"
-#include "src/simunits/system/CompositeSimUnit.h"
+#include "src/simunits/system/CompositeSimunit.h"
 #include "src/simunits/system/Connector.h"
 
 #include "src/simunits/fmi20/OutputRealPort.h"
@@ -35,10 +35,10 @@ int main() {
 
   std::cout << "Creating simunits container ..." << std::endl;
 
-  system::CompositeSimUnit::Simunits simunits = {sourceA, sourceB, adder};
-  system::CompositeSimUnit::SimunitsPtr simunitsptr(make_shared<system::CompositeSimUnit::Simunits>(simunits));
+  system::CompositeSimunit::Simunits simunits = {sourceA, sourceB, adder};
+  system::CompositeSimunit::SimunitsPtr simunitsptr(make_shared<system::CompositeSimunit::Simunits>(simunits));
   // alternative syntax
-  system::CompositeSimUnit::SimunitsPtr simunitsptr2(new system::CompositeSimUnit::Simunits({sourceA, sourceB, adder}));
+  system::CompositeSimunit::SimunitsPtr simunitsptr2(new system::CompositeSimunit::Simunits({sourceA, sourceB, adder}));
 
   std::cout << "Create connection sourceA.y -> adder.x1 ..." << std::endl;
   //system::Connector c_sourceA_y__adder_x1(sourceAports->at(0), adderports->at(0), "sourceA.y->adder.x1");
@@ -50,19 +50,21 @@ int main() {
   std::cout << "c_sourceB_y__adder_x1: " << *c_sourceB_y__adder_x2 << std::endl;
 
   std::cout << "Creating connectors container ..." << std::endl;
-  system::CompositeSimUnit::Connectors connectors = {
+  system::CompositeSimunit::Connectors connectors = {
     c_sourceA_y__adder_x1,
     c_sourceB_y__adder_x2
   };
-  system::CompositeSimUnit::ConnectorsPtr connectorsptr = make_shared<system::CompositeSimUnit::Connectors>(connectors);
+  system::CompositeSimunit::ConnectorsPtr connectorsptr = make_shared<system::CompositeSimunit::Connectors>(connectors);
 
   std::cout << "Creating composite ..." << std::endl;
-  system::CompositeSimUnit composite(simunitsptr, connectorsptr);
+  system::CompositeSimunit composite(simunitsptr, connectorsptr);
   // alternative constructor
-  system::CompositeSimUnit composite2({sourceA, sourceB, adder}, {c_sourceA_y__adder_x1, c_sourceB_y__adder_x2});
+  system::CompositeSimunit composite2({sourceA, sourceB, adder}, {c_sourceA_y__adder_x1, c_sourceB_y__adder_x2}, {});
   std::cout << "composite os: " << composite << std::endl;
 
   std::cout << "sourceA.y.get: " << dynamic_pointer_cast<fmi20::OutputRealPort>(sourceA->ports()->at(0))->get() << std::endl;
+
+  std::cout << "identifier: " << *(sourceA->identifier()) << std::endl;
 
   stubs::SimController simctrl;
   simctrl.simulate(&composite);
