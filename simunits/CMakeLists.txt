@@ -19,8 +19,18 @@ add_executable(test_simunits_factory test_simunits_factory.cpp)
 target_link_libraries(test_simunits_factory simunits OMSimulatorLib ${CMAKE_DL_LIBS} ${FMILibrary_LIBRARY})
 install(TARGETS test_simunits_factory DESTINATION bin)
 
+add_executable(test_simunits_composite test_simunits_composite.cpp)
+target_link_libraries(test_simunits_composite simunits OMSimulatorLib ${CMAKE_DL_LIBS} ${FMILibrary_LIBRARY})
+install(TARGETS test_simunits_composite DESTINATION bin)
+
 add_executable(test_mach7 test_mach7.cpp)
 install(TARGETS test_mach7 DESTINATION bin)
+
+add_executable(test_port test_port.cpp)
+install(TARGETS test_port DESTINATION bin)
+
+add_executable(test_port2 test_port2.cpp)
+install(TARGETS test_port2 DESTINATION bin)
 
 add_executable(numbers numbers.cpp)
 install(TARGETS numbers DESTINATION bin)
