@@ -9,7 +9,7 @@ version = getVersion()
 -- print(version)
 
 model = newModel()
-setWorkingDirectory(".")
+setWorkingDirectory(model, ".")
 
 -- instantiate FMUs
 instantiateFMU(model, "../FMUs/me_source1.fmu", "sourceA")
@@ -24,7 +24,7 @@ addConnection(model, "sourceB.y", "adder.x2")
 setReal(model, "sourceA.A", 0.5)
 setReal(model, "sourceA.omega", 2.0)
 
-setStopTime(10.0)
+setStopTime(model, 10.0)
 
 simulate(model)
 --exportDependencyGraph(model, "test")
