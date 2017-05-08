@@ -24,6 +24,6 @@ unload(model)
 -- Result:
 -- BouncingBall
 -- Model name: BouncingBall
--- GUID: {6a7dc7ae-436f-49e4-95f0-4888b7618f70}
+-- GUID: {35ad3480-034b-4cbf-9396-c17a51220ee7}
 -- Model identifier for ME: me_BouncingBall
 -- endResult

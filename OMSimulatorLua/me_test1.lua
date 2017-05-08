@@ -24,6 +24,6 @@ unload(model)
 -- Result:
 -- test1
 -- Model name: test1
--- GUID: {20db05bd-be73-4960-aaa8-ee4be1af214a}
+-- GUID: {5daf3328-7e1e-4ed4-af75-84ebb83eb29e}
 -- Model identifier for ME: me_test1
 -- endResult

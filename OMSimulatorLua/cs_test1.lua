@@ -24,6 +24,6 @@ unload(model)
 -- Result:
 -- test1
 -- Model name: test1
--- GUID: {010f91f9-a1ae-45cc-974a-2d37dc3380d9}
+-- GUID: {e72ab90f-3c54-4c60-a423-177dbaddd14c}
 -- Model identifier for CS: cs_test1
 -- endResult
