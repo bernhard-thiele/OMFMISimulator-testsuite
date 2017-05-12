@@ -34,14 +34,15 @@ stepUntil(model, 10.0)
 --exportDependencyGraph(model, "test")
 --os.execute("dot -Tpdf test_outputsGraph.dot > test_outputsGraph.pdf")
 
-print("adder1.y at 10: " .. getReal(model, "adder1.y"))
-print("adder2.y at 10: " .. getReal(model, "adder2.y"))
+tcur = getCurrentTime(model)
+print("adder1.y at " .. tcur .. ": " .. getReal(model, "adder1.y"))
+print("adder2.y at " .. tcur .. ": " .. getReal(model, "adder2.y"))
 
 terminate(model)
 
 unload(model)
 
 -- Result:
--- adder1.y at 10: -0.050699025021762
--- adder2.y at 10: -0.48303321299316
+-- adder1.y at 10.1: -0.050699025021762
+-- adder2.y at 10.1: -0.48303321299316
 -- endResult
