@@ -1,10 +1,12 @@
 TEST = ../rtestLua -v
 
 TESTFILES = \
-me_test1.lua \
-me_BouncingBall.lua \
-cs_test1.lua \
 cs_BouncingBall.lua \
+cs_test1.lua \
+me_BouncingBall.lua \
+me_test1.lua \
+test2.lua \
+test3.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \

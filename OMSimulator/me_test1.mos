@@ -6,14 +6,14 @@ vars := {
   "der(x)"
 };
 
-system("../../install/bin/OMSimulator ../FMUs/me_test1.fmu"); getErrorString();
-res := OpenModelica.Scripting.compareSimulationResults("../ReferenceFiles/me_test1.mat",
-  "test1_res.csv", "test1_diff.csv", 0.01, 0.0001, vars); getErrorString();
+system("../../install/bin/OMSimulator ../FMUs/me_test1.fmu --resultFile=me_test1"); getErrorString();
+OpenModelica.Scripting.diffSimulationResults("../ReferenceFiles/me_test1.mat",
+  "me_test1_fmu_res.csv", "test1_diff", vars=vars); getErrorString();
 
 // Result:
 // {"x","der(x)"}
 // 0
 // ""
-// {"Files Equal!"}
+// (true,{})
 // ""
 // endResult

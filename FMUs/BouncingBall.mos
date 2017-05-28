@@ -21,5 +21,5 @@ equation
 end BouncingBall;
 "); getErrorString();
 
-buildModelFMU(BouncingBall, version="2.0", fmuType="me", fileNamePrefix="me_BouncingBall"); getErrorString();
-buildModelFMU(BouncingBall, version="2.0", fmuType="cs", fileNamePrefix="cs_BouncingBall"); getErrorString();
+buildModelFMU(BouncingBall, version="2.0", fmuType="me", fileNamePrefix="me_BouncingBall", platforms={"static"}); getErrorString();
+buildModelFMU(BouncingBall, version="2.0", fmuType="cs", fileNamePrefix="cs_BouncingBall", platforms={"static"}); getErrorString();

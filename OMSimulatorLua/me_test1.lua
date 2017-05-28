@@ -8,14 +8,14 @@ require("libOMSimulatorLua")
 version = getVersion()
 -- print(version)
 
-setWorkingDirectory(".")
-
 model = newModel()
+setWorkingDirectory(model, ".")
+
 instantiateFMU(model, "../FMUs/me_test1.fmu", "test1")
 describe(model)
 
-setStopTime(2.1)
-setTolerance(1e-5)
+setStopTime(model, 2.1)
+setTolerance(model, 1e-5)
 
 simulate(model)
 
@@ -24,6 +24,6 @@ unload(model)
 -- Result:
 -- test1
 -- Model name: test1
--- GUID: {20db05bd-be73-4960-aaa8-ee4be1af214a}
+-- GUID: {5daf3328-7e1e-4ed4-af75-84ebb83eb29e}
 -- Model identifier for ME: me_test1
 -- endResult

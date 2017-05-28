@@ -6,5 +6,5 @@ equation
 end test1;
 "); getErrorString();
 
-buildModelFMU(test1, version="2.0", fmuType="me", fileNamePrefix="me_test1"); getErrorString();
-buildModelFMU(test1, version="2.0", fmuType="cs", fileNamePrefix="cs_test1"); getErrorString();
+buildModelFMU(test1, version="2.0", fmuType="me", fileNamePrefix="me_test1", platforms={"static"}); getErrorString();
+buildModelFMU(test1, version="2.0", fmuType="cs", fileNamePrefix="cs_test1", platforms={"static"}); getErrorString();
