@@ -22,8 +22,20 @@ simulate(model)
 unload(model)
 
 -- Result:
+-- # FMU instances
 -- BouncingBall
--- Model name: BouncingBall
--- GUID: {ed0c3e8c-c48f-4995-b80b-eb1d54c9737b}
--- Model identifier for CS: cs_BouncingBall
+--   - FMI 2.0 CS
+--   - path: ../FMUs/cs_BouncingBall.fmu
+--   - GUID: {ed0c3e8c-c48f-4995-b80b-eb1d54c9737b}
+--
+-- # Simulation settings
+-- start time: 0
+-- stop time: 0
+-- tolerance: 0
+-- result file: <no result file>
+--
+-- # Composite structure
+--
+-- ## Simulation
+--
 -- endResult

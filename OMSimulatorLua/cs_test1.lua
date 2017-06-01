@@ -22,8 +22,20 @@ simulate(model)
 unload(model)
 
 -- Result:
+-- # FMU instances
 -- test1
--- Model name: test1
--- GUID: {e72ab90f-3c54-4c60-a423-177dbaddd14c}
--- Model identifier for CS: cs_test1
+--   - FMI 2.0 CS
+--   - path: ../FMUs/cs_test1.fmu
+--   - GUID: {e72ab90f-3c54-4c60-a423-177dbaddd14c}
+--
+-- # Simulation settings
+-- start time: 0
+-- stop time: 0
+-- tolerance: 0
+-- result file: <no result file>
+--
+-- # Composite structure
+--
+-- ## Simulation
+--
 -- endResult
