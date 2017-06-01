@@ -4,12 +4,12 @@ use File::Temp qw/ tempfile /;
 
 (undef,$testTempFile) = tempfile("rtest$$.XXXXX", TMPDIR => 1, SUFFIX => ".tmp", UNLINK => 1);
 $cwd = getcwd;
-if ($cwd =~ m/(.*)OMSimulator\/(.+)$/) {
+if ($cwd =~ m/(.*)OMFMISimulator\/(.+)$/) {
   $OPENMODELICAHOME=$ENV{'OPENMODELICAHOME'};
   $dirname=$2;
   $ENV{'OPENMODELICAHOME'} = $OPENMODELICAHOME;
 } else {
-  print "You must run rtest from OMSimulator (was run from $cwd)\n";
+  print "You must run rtest from OMFMISimulator (was run from $cwd)\n";
   exit 0;
 }
 
