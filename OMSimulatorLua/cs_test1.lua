@@ -29,12 +29,13 @@ unload(model)
 --   - GUID: {e72ab90f-3c54-4c60-a423-177dbaddd14c}
 --
 -- # Simulation settings
--- start time: 0
--- stop time: 0
--- tolerance: 0
--- result file: <no result file>
+--   - start time: 0
+--   - stop time: 0
+--   - tolerance: 0
+--   - result file: <no result file>
 --
 -- # Composite structure
+-- ## Initialization
 --
 -- ## Simulation
 --
