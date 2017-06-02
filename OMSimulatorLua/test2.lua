@@ -2,8 +2,12 @@
 -- name: test2
 -- status: correct
 
-package.cpath = package.cpath .. ';../../install/lib/libOMSimulatorLua.so'
-require("libOMSimulatorLua")
+if os.getenv("OS") == "Windows_NT" then
+  package.cpath = package.cpath .. ';../../install/lib/?.dll'
+else
+  package.cpath = package.cpath .. ';../../install/lib/libOMSimulatorLua.so'
+end
+require("OMSimulatorLua")
 
 version = getVersion()
 -- print(version)
