@@ -31,6 +31,8 @@ unload(model)
 --   - FMI 2.0 CS
 --   - path: ../FMUs/cs_BouncingBall.fmu
 --   - GUID: {ed0c3e8c-c48f-4995-b80b-eb1d54c9737b}
+--   - input interface:
+--   - output interface:
 --
 -- # Simulation settings
 --   - start time: 0

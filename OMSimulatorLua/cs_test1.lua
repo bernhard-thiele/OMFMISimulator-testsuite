@@ -31,6 +31,8 @@ unload(model)
 --   - FMI 2.0 CS
 --   - path: ../FMUs/cs_test1.fmu
 --   - GUID: {e72ab90f-3c54-4c60-a423-177dbaddd14c}
+--   - input interface:
+--   - output interface:
 --
 -- # Simulation settings
 --   - start time: 0
