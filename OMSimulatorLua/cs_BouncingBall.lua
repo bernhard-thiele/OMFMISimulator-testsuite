@@ -31,6 +31,7 @@ unload(model)
 --   - FMI 2.0 CS
 --   - path: ../FMUs/cs_BouncingBall.fmu
 --   - GUID: {ed0c3e8c-c48f-4995-b80b-eb1d54c9737b}
+--   - tool: OpenModelica Compiler OMCompiler v1.12.0-dev.395+gdeeabde
 --   - input interface:
 --   - output interface:
 --

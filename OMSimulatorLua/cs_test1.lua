@@ -31,6 +31,7 @@ unload(model)
 --   - FMI 2.0 CS
 --   - path: ../FMUs/cs_test1.fmu
 --   - GUID: {e72ab90f-3c54-4c60-a423-177dbaddd14c}
+--   - tool: OpenModelica Compiler OMCompiler v1.12.0-dev.395+gdeeabde
 --   - input interface:
 --   - output interface:
 --
