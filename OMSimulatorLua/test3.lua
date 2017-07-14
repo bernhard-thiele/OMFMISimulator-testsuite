@@ -13,7 +13,7 @@ version = getVersion()
 -- print(version)
 
 model = newModel()
-setWorkingDirectory(model, ".")
+setTempDirectory(".")
 
 -- instantiate FMUs
 instantiateFMU(model, "../FMUs/me_source1.fmu", "sourceA")

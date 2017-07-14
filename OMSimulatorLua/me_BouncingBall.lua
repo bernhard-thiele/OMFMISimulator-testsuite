@@ -13,7 +13,7 @@ version = getVersion()
 -- print(version)
 
 model = newModel()
-setWorkingDirectory(model, ".")
+setTempDirectory(".")
 
 instantiateFMU(model, "../FMUs/me_BouncingBall.fmu", "BouncingBall")
 describe(model)
