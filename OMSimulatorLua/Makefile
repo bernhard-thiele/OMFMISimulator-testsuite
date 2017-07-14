@@ -7,6 +7,7 @@ me_BouncingBall.lua \
 me_test1.lua \
 test2.lua \
 test3.lua \
+Importxml.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \
@@ -15,6 +16,7 @@ FAILINGTESTFILES = \
 # Add them here or they will be cleaned.
 DEPENDENCIES = \
 *.lua \
+*.xml \
 Makefile \
 README.md \
 
