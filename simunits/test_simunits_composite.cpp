@@ -47,7 +47,7 @@ int main() {
 
   stubs::SimController simctrl;
   auto p_dyn = comp1->getDynPort();
-  std::cout << "Inserting dependency to ISolver (FIXME revise mechanism): " << std::endl;
+  std::cout << "Inserting dependency to ISolver (TODO revise mechanism): " << std::endl;
   p_dyn->setRequiredISolver(&simctrl);
 
 
