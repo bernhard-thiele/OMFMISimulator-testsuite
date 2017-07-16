@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+	<SubModels>
+		<SubModel Name="adder1" ModelFile="../FMUs/me_adder1.fmu" />
+		<SubModel Name="adder2" ModelFile="../FMUs/me_adder1.fmu" />
+		<SubModel Name="sourceA" ModelFile="../FMUs/me_source1.fmu" />
+		<SubModel Name="sourceB" ModelFile="../FMUs/me_source1.fmu" />
+	</SubModels>
+	<Connections>
+		<Connection From="sourceB.y" To="adder1.x2" />
+		<Connection From="sourceB.y" To="adder2.x2" />
+		<Connection From="sourceA.y" To="adder1.x1" />
+		<Connection From="adder1.y" To="adder2.x1" />
+	</Connections>
+</Model>

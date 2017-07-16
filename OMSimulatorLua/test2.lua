@@ -2,14 +2,18 @@
 -- name: test2
 -- status: correct
 
-package.cpath = package.cpath .. ';../../install/lib/libOMSimulatorLua.so'
-require("libOMSimulatorLua")
+if os.getenv("OS") == "Windows_NT" then
+  package.cpath = package.cpath .. ';../../install/lib/?.dll'
+else
+  package.cpath = package.cpath .. ';../../install/lib/libOMSimulatorLua.so'
+end
+require("OMSimulatorLua")
 
 version = getVersion()
 -- print(version)
 
 model = newModel()
-setWorkingDirectory(model, ".")
+setTempDirectory(".")
 
 -- instantiate FMUs
 instantiateFMU(model, "../FMUs/me_source1.fmu", "sourceA")
@@ -32,7 +36,8 @@ setStopTime(model, 10.0)
 initialize(model)
 stepUntil(model, 10.0)
 --exportDependencyGraph(model, "test")
---os.execute("dot -Tpdf test_outputsGraph.dot > test_outputsGraph.pdf")
+--os.execute("gvpr -c \"N[$.degree==0]{delete(root, $)}\" test_simulation.dot | dot -Tpdf -o test_simulation.pdf")
+--os.execute("gvpr -c \"N[$.degree==0]{delete(root, $)}\" test_initialization.dot | dot -Tpdf -o test_initialization.pdf")
 
 tcur = getCurrentTime(model)
 print("adder1.y at " .. tcur .. ": " .. getReal(model, "adder1.y"))

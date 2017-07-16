@@ -2,14 +2,17 @@
 -- name: me_test1
 -- status: correct
 
-package.cpath = package.cpath .. ';../../install/lib/libOMSimulatorLua.so'
-require("libOMSimulatorLua")
+if os.getenv("OS") == "Windows_NT" then
+  package.cpath = package.cpath .. ';../../install/lib/?.dll'
+else
+  package.cpath = package.cpath .. ';../../install/lib/libOMSimulatorLua.so'
+end
+require("OMSimulatorLua")
 
 version = getVersion()
 -- print(version)
-
 model = newModel()
-setWorkingDirectory(model, ".")
+setTempDirectory(".")
 
 instantiateFMU(model, "../FMUs/me_test1.fmu", "test1")
 describe(model)
@@ -22,8 +25,24 @@ simulate(model)
 unload(model)
 
 -- Result:
+-- # FMU instances
 -- test1
--- Model name: test1
--- GUID: {5daf3328-7e1e-4ed4-af75-84ebb83eb29e}
--- Model identifier for ME: me_test1
+--   - FMI 2.0 ME
+--   - path: ../FMUs/me_test1.fmu
+--   - GUID: {5daf3328-7e1e-4ed4-af75-84ebb83eb29e}
+--   - tool: OpenModelica Compiler OMCompiler v1.12.0-dev.395+gdeeabde
+--   - input interface:
+--   - output interface:
+--
+-- # Simulation settings
+--   - start time: 0
+--   - stop time: 0
+--   - tolerance: 0
+--   - result file: <no result file>
+--
+-- # Composite structure
+-- ## Initialization
+--
+-- ## Simulation
+--
 -- endResult

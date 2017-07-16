@@ -2,14 +2,18 @@
 -- name: cs_BouncingBall
 -- status: correct
 
-package.cpath = package.cpath .. ';../../install/lib/libOMSimulatorLua.so'
-require("libOMSimulatorLua")
+if os.getenv("OS") == "Windows_NT" then
+  package.cpath = package.cpath .. ';../../install/lib/?.dll'
+else
+  package.cpath = package.cpath .. ';../../install/lib/libOMSimulatorLua.so'
+end
+require("OMSimulatorLua")
 
 version = getVersion()
 -- print(version)
 
 model = newModel()
-setWorkingDirectory(model, ".")
+setTempDirectory(".")
 
 instantiateFMU(model, "../FMUs/cs_BouncingBall.fmu", "BouncingBall")
 describe(model)
@@ -22,8 +26,24 @@ simulate(model)
 unload(model)
 
 -- Result:
+-- # FMU instances
 -- BouncingBall
--- Model name: BouncingBall
--- GUID: {ed0c3e8c-c48f-4995-b80b-eb1d54c9737b}
--- Model identifier for CS: cs_BouncingBall
+--   - FMI 2.0 CS
+--   - path: ../FMUs/cs_BouncingBall.fmu
+--   - GUID: {ed0c3e8c-c48f-4995-b80b-eb1d54c9737b}
+--   - tool: OpenModelica Compiler OMCompiler v1.12.0-dev.395+gdeeabde
+--   - input interface:
+--   - output interface:
+--
+-- # Simulation settings
+--   - start time: 0
+--   - stop time: 0
+--   - tolerance: 0
+--   - result file: <no result file>
+--
+-- # Composite structure
+-- ## Initialization
+--
+-- ## Simulation
+--
 -- endResult
