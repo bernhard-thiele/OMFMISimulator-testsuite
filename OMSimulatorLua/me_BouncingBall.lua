@@ -39,6 +39,7 @@ unload(model)
 --   - start time: <undefined>
 --   - stop time: <undefined>
 --   - tolerance: <undefined>
+--   - communication interval: <undefined>
 --   - result file: <no result file>
 --
 -- # Composite structure
