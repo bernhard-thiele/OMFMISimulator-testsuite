@@ -17,9 +17,9 @@ using std::shared_ptr;
 
 int main() {
 
-  std::string sourceApath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/me_source1.fmu";
-  std::string sourceBpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/me_source1.fmu";
-  std::string adderpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/me_adder1.fmu";
+  std::string sourceApath = "/home/bernhard/data/workspace/OMFMISimulator/testsuite/FMUs/me_source1.fmu";
+  std::string sourceBpath = "/home/bernhard/data/workspace/OMFMISimulator/testsuite/FMUs/me_source1.fmu";
+  std::string adderpath = "/home/bernhard/data/workspace/OMFMISimulator/testsuite/FMUs/me_adder1.fmu";
 
   std::cout << "Creating sourceA ..." << std::endl;
   shared_ptr<fmi20::FMU20> sourceA(make_shared<fmi20::FMU20>(sourceApath, fmi20::kUnknown, "sourceA"));

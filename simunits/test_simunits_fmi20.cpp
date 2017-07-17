@@ -15,10 +15,10 @@ using namespace simunits;
 
 int main() {
 
-  //std::string modelpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/cs_BouncingBall.fmu";
-  //std::string modelpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/cs_PID_Controller.fmu";
-  //std::string modelpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/me_BouncingBall.fmu";
-  std::string modelpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/MyTestReal.fmu";
+  //std::string modelpath = "/home/bernhard/data/workspace/OMFMISimulator/testsuite/FMUs/cs_BouncingBall.fmu";
+  //std::string modelpath = "/home/bernhard/data/workspace/OMFMISimulator/testsuite/FMUs/cs_PID_Controller.fmu";
+  //std::string modelpath = "/home/bernhard/data/workspace/OMFMISimulator/testsuite/FMUs/me_BouncingBall.fmu";
+  std::string modelpath = "/home/bernhard/data/workspace/OMFMISimulator/testsuite/FMUs/MyTestReal.fmu";
 
   std::cout << "Creating fmu20 ..." << std::endl;
   fmi20::FMU20 fmu20(modelpath);

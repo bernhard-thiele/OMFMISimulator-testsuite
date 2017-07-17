@@ -7,9 +7,9 @@ using namespace simunits;
 
 int main() {
 
-  std::string sourceApath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/me_source1.fmu";
-  std::string sourceBpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/me_source1.fmu";
-  std::string adderpath = "/home/bernhard/data/workspace/OMSimulator/testsuite/FMUs/me_adder1.fmu";
+  std::string sourceApath = "/home/bernhard/data/workspace/OMFMISimulator/testsuite/FMUs/me_source1.fmu";
+  std::string sourceBpath = "/home/bernhard/data/workspace/OMFMISimulator/testsuite/FMUs/me_source1.fmu";
+  std::string adderpath = "/home/bernhard/data/workspace/OMFMISimulator/testsuite/FMUs/me_adder1.fmu";
 
   auto sourceA = createFMU20(sourceApath, fmi20::kUnknown, "sourceA");
   auto sourceB = createFMU20(sourceBpath);
