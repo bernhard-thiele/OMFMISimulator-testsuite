@@ -27,6 +27,6 @@ print("adder2.y at " .. tcur .. ": " .. getReal(model, "adder2.y"))
 
 
 -- Result:
--- adder1.y at 10.1: -0.050699025021762
--- adder2.y at 10.1: -0.48303321299316
+-- adder1.y at 10: -0.087548485525547
+-- adder2.y at 10: -0.59472013591111
 -- endResult

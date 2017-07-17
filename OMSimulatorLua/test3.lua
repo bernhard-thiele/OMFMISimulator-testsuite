@@ -45,6 +45,6 @@ terminate(model)
 unload(model)
 
 -- Result:
--- sourceA.y at 10.1: 0.45647262536381
--- sourceB.y at 10.1: -0.54402111088935
+-- sourceA.y at 10.1: 0.48791025888348
+-- sourceB.y at 10.1: -0.62507064889287
 -- endResult
