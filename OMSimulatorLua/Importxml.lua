@@ -18,7 +18,6 @@ model = loadModel('ConnectedFmu.xml')
 setReal(model, "sourceA.A", 0.5)
 setReal(model, "sourceA.omega", 2.0)
 
-setStopTime(model, 10.0)
 initialize(model)
 stepUntil(model, 10.0)
 tcur = getCurrentTime(model)
