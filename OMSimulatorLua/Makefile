@@ -8,6 +8,7 @@ me_test1.lua \
 test2.lua \
 test3.lua \
 Importxml.lua \
+ImportExport.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \

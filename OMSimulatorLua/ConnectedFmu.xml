@@ -12,4 +12,5 @@
 		<Connection From="sourceA.y" To="adder1.x1" />
 		<Connection From="adder1.y" To="adder2.x1" />
 	</Connections>
+    <SimulationParams StopTime="2.1" tolerance="1e-05" />
 </Model>

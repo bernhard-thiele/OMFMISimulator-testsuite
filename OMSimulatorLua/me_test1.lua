@@ -35,9 +35,10 @@ unload(model)
 --   - output interface:
 --
 -- # Simulation settings
---   - start time: 0
---   - stop time: 0
---   - tolerance: 0
+--   - start time: <undefined>
+--   - stop time: <undefined>
+--   - tolerance: <undefined>
+--   - communication interval: <undefined>
 --   - result file: <no result file>
 --
 -- # Composite structure
