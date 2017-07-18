@@ -24,6 +24,8 @@ tcur = getCurrentTime(model)
 print("adder1.y at " .. tcur .. ": " .. getReal(model, "adder1.y"))
 print("adder2.y at " .. tcur .. ": " .. getReal(model, "adder2.y"))
 
+terminate(model)
+unload(model)
 
 -- Result:
 -- adder1.y at 10: -0.087548485525547
