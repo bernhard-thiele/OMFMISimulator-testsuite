@@ -21,7 +21,9 @@ describe(model)
 setStopTime(model, 2.1)
 setTolerance(model, 1e-5)
 
+initialize(model)
 simulate(model)
+terminate(model)
 
 unload(model)
 
