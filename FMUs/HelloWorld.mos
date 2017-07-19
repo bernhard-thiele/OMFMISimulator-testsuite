@@ -1,0 +1,14 @@
+loadString("
+model HelloWorld
+  parameter Real a = -1;
+  parameter Real x_start = 1;
+  Real x(start=x_start, fixed=true);
+equation
+  der(x) = a*x;
+end HelloWorld;
+"); getErrorString();
+
+buildModelFMU(HelloWorld, version="2.0", fmuType="me", fileNamePrefix="me_HelloWorld", platforms={"static"}); getErrorString();
+buildModelFMU(HelloWorld, version="2.0", fmuType="cs", fileNamePrefix="cs_HelloWorld", platforms={"static"}); getErrorString();
+mkdir("simbin_HelloWorld"); getErrorString();
+
