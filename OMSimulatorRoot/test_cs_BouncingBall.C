@@ -22,6 +22,7 @@ void test_cs_BouncingBall() {
   oms_setStopTime(model, 2.1);
   oms_setTolerance(model, 1e-5);
 
+  oms_initialize(model);
   oms_simulate(model);
 
   oms_unload(model);
@@ -30,7 +31,7 @@ void test_cs_BouncingBall() {
 // Result:
 //
 // Processing test_cs_BouncingBall.C...
-// OMSimulator v0.0.0-129-gb89431c
+// OMSimulator v0.0.0-109-g0901c2c
 // # FMU instances
 // BouncingBall
 //   - FMI 2.0 CS
@@ -41,9 +42,10 @@ void test_cs_BouncingBall() {
 //   - output interface:
 //
 // # Simulation settings
-//   - start time: 0
-//   - stop time: 0
-//   - tolerance: 0
+//   - start time: <undefined>
+//   - stop time: <undefined>
+//   - tolerance: <undefined>
+//   - communication interval: <undefined>
 //   - result file: <no result file>
 //
 // # Composite structure
@@ -51,7 +53,4 @@ void test_cs_BouncingBall() {
 //
 // ## Simulation
 //
-// Logging information has been saved to "omsllog.txt"
-//   25 warnings
-//   0 errors
 // endResult
