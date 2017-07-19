@@ -2,13 +2,26 @@
 // Let's try fiting OMC ODE parameters to a reference OMC ODE solution
 // WORKS BUT VERY SLOW! Compare speed to test_cfunc_HelloWorld.C and test_cs_HelloWorld.C
 
+// Most includes not necessary for Cling, but needed if file is compiled to standalone executable, e.g.,
+// g++ -o test_simbin_HelloWorld test_simbin_HelloWorld.C `root-config --cflags --libs`
 
 #include <iostream>
+#include <chrono>
 #include <stdexcept>
 #include <stdio.h>
 #include <string>
 #include <sstream>
 #include <unistd.h>
+
+
+#include "TCanvas.h"
+#include "TROOT.h"
+#include "TFitResult.h"
+#include "TGraphErrors.h"
+#include "TF1.h"
+#include "TLegend.h"
+#include "TArrow.h"
+#include "TLatex.h"
 
 using namespace std::chrono;
 
@@ -105,5 +118,11 @@ int test_simbin_HelloWorld() {
    "Duration for Fit(&fode2, \"S\"): " << duration_cast<milliseconds>(t1-t0).count() << "msec" <<
    "\n=====================================\n";
 
+  return 0;
+}
+
+/** main() only required if compiled to a standalone executable */
+int main() {
+  test_simbin_HelloWorld();
   return 0;
 }

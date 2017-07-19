@@ -2,12 +2,20 @@
 // Let's try fitting cs_fmu ODE parameters to a reference OMC ODE solution
 // WORKS BUT VERY SLOW (no use of reset => re-instantiation is costly)! Compare speed to test_cs_HelloWorld.C
 
+// Most includes not necessary for Cling, but needed if file is compiled to standalone executable, e.g.,
+// g++ -o test_cs_HelloWorld_withoutReset_SLOW test_cs_HelloWorld_withoutReset_SLOW.C `root-config --cflags --libs` -L../../3rdParty/FMIL/install/linux/lib/ -lfmilib_shared -L../../install/lib/ -lOMSimulatorLib
+
 #include <iostream>
-#include <stdexcept>
-#include <stdio.h>
-#include <string>
-#include <sstream>
-#include <unistd.h>
+#include <chrono>
+
+#include "TCanvas.h"
+#include "TROOT.h"
+#include "TFitResult.h"
+#include "TGraphErrors.h"
+#include "TF1.h"
+#include "TLegend.h"
+#include "TArrow.h"
+#include "TLatex.h"
 
 #include "../../install/include/OMSimulator.h"
 
@@ -77,5 +85,11 @@ int test_cs_HelloWorld_withoutReset_SLOW() {
    "Duration for Fit(&fode2, \"S\"): " << duration_cast<milliseconds>(t1-t0).count() << "msec" <<
    "\n=====================================\n";
 
+  return 0;
+}
+
+/** main() only required if compiled to a standalone executable */
+int main() {
+  test_cs_HelloWorld_withoutReset_SLOW();
   return 0;
 }

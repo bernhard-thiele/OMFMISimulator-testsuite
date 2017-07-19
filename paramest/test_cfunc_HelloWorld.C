@@ -1,6 +1,18 @@
 // Experiment for fitting functions / parameter estimation
 // Let's try fiting ODE parameters to a reference ODE solution
 
+#include <iostream>
+#include <chrono>
+
+#include "TCanvas.h"
+#include "TROOT.h"
+#include "TFitResult.h"
+#include "TGraphErrors.h"
+#include "TF1.h"
+#include "TLegend.h"
+#include "TArrow.h"
+#include "TLatex.h"
+
 using namespace std::chrono;
 
 // der(x) = p[1]*x;
@@ -57,5 +69,11 @@ int test_cfunc_HelloWorld() {
    "Duration for Fit(&fode2, \"S\"): " << duration_cast<milliseconds>(t1-t0).count() << "msec" <<
    "\n=====================================\n";
 
+  return 0;
+}
+
+/** main() only required if compiled to a standalone executable */
+int main() {
+  test_cfunc_HelloWorld();
   return 0;
 }
