@@ -2,10 +2,13 @@ TEST = root -l -q -e 'gSystem->Load("../../3rdParty/FMIL/install/linux/lib/libfm
 
 FILES = \
 test_cfunc_HelloWorld.C \
+test_cs_HelloWorld.C \
 test_simbin_HelloWorld.C \
 
+# test_cs_HelloWorld_withoutReset_SLOW.C \
+
 FAILINGFILES = \
-test_cs_HelloWorld.C
+
 
 # Dependency files that are not .mo .mos or Makefile
 # Add them here or they will be cleaned.

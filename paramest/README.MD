@@ -11,5 +11,15 @@ helper script to ensure that dynamic libraries are loaded into root, e.g.:
 ## Dependencies
 - ROOT, [https://root.cern.ch/](https://root.cern.ch/)
 
-## Notes
-- Use `fmi2reset` for resetting FMU?
+## Performance
+
+One run in Ubuntu 14.04.5 LTS on my laptop
+(Intel(R) Core(TM) i7-4702MQ CPU @ 2.20GHz; SSD hard disk)
+gave the following measurements with the interpreted test cases:
+
+| Test case                            | time for fitting (ms) | factor |
+| ---------                            | --------------------: | -----  |
+| test_cs_HelloWorld.C                 | 4648                  | 1      |
+| test_simbin_HelloWorld               | 96438                 | 20.7   |
+| test_cs_HelloWorld_withoutReset_SLOW | 350244                | 78.4   |
+| test_cfunc_HelloWorld.C              | 27                    | 0.006  |
