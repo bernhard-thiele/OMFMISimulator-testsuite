@@ -10,46 +10,35 @@
 
 #include "../../install/include/OMSimulator.h"
 
+using namespace std::chrono;
+
+void* model; // global variable
+
 // der(x) = p[1]*x;
 // x(0) = p[0];
 double the_ode(double* vars, double* pars) {
-  static int count = 0;
-  count++;
-  const char* version = oms_getVersion();
-  std::cout << "N" << count << " : " << version << std::endl;
-  void* model = oms_newModel();
-  oms_setTempDirectory(".");
-
-  oms_instantiateFMU(model, "models/cs_HelloWorld.fmu", "HelloWorld");
-  //oms_describe(model);
+  // static int count = 0;
+  // count++;
+  // std::cout << "N" << count << std::endl;
 
   oms_setReal(model, "HelloWorld.x_start", pars[0]);
   oms_setReal(model, "HelloWorld.a", pars[1]);
   oms_setStopTime(model, vars[0]);
   oms_setTolerance(model, 1e-5);
 
-  // oms_simulate(model); // get segmentation violation
-
   oms_initialize(model);
   oms_stepUntil(model, vars[0]);
 
-  // double tcur;
-  // oms_getCurrentTime(model, &tcur);
-  // while (tcur < vars[0]) {
-  //   oms_doSteps(model, 0.1);
-  //   oms_getCurrentTime(model, &tcur);
-  // }
   double x = oms_getReal(model, "HelloWorld.x");
-  oms_terminate(model);
-  std::cout << "BEFORE oms_unload" << std::endl;
-  oms_unload(model);
-  std::cout << "After oms_unload" << std::endl;
-
+  oms_reset(model);
   return x;
 }
 
 int test_cs_HelloWorld() {
-  std::cout << "START test_cs_HelloWorld\n";
+  model = oms_newModel();
+  oms_setTempDirectory(".");
+  oms_instantiateFMU(model, "../FMUs/cs_HelloWorld.fmu", "HelloWorld");
+  //oms_describe(model);
 
   TCanvas *c1 = new TCanvas("c1","tofind",700,500);
 
@@ -66,14 +55,17 @@ int test_cs_HelloWorld() {
   gexpect->DrawClone();
 
 
-  std::cout << "Create new function to perform fit\n";
+  // Create new function to perform fit
   TF1 fode2("fittet ODE par;time;Y Vals",the_ode,0,1,2);
   // "reset" parameters to start valued differing from reference
   fode2.SetParameters(0.5, -0.5);
   fode2.SetLineColor(kRed); fode2.SetLineStyle(2);
-  std::cout << "Fit it to the graph\n";
+  // Fit it to the graph and measure the needed time
+  auto t0 = high_resolution_clock::now();
   auto fitResPtr = gexpect->Fit(&fode2, "S");
-  std::cout << "... and retrieve fit results\n";
+  auto t1 = high_resolution_clock::now();
+
+  // ... and retrieve fit results
   fitResPtr->Print(); // print fit results
   fode2.DrawClone("Same");
 
@@ -85,5 +77,12 @@ int test_cs_HelloWorld() {
   leg.AddEntry(&fode2,"Fitted OM ODE");
   leg.DrawClone("Same");
 
+  std::cout <<
+   "\n=====================================\n" <<
+   "Duration for Fit(&fode2, \"S\"): " << duration_cast<milliseconds>(t1-t0).count() << "msec" <<
+   "\n=====================================\n";
+
+  oms_terminate(model);
+  oms_unload(model);
   return 0;
 }

@@ -1,6 +1,6 @@
 // Experiment for fitting functions / parameter estimation
 // Let's try fiting OMC ODE parameters to a reference OMC ODE solution
-// WORKS BUT VERY SLOW! Compare speed to test_cfunc_HelloWorld.C
+// WORKS BUT VERY SLOW! Compare speed to test_cfunc_HelloWorld.C and test_cs_HelloWorld.C
 
 
 #include <iostream>
@@ -9,6 +9,8 @@
 #include <string>
 #include <sstream>
 #include <unistd.h>
+
+using namespace std::chrono;
 
 std::string exec(const char* cmd) {
     char buffer[128];
@@ -31,9 +33,9 @@ std::string exec(const char* cmd) {
 // der(x) = p[1]*x;
 // x(0) = p[0];
 double the_ode(double* vars, double* pars) {
-  static int count = 0;
-  count++;
-  std::cout << "N" << count << std::endl;
+  // static int count = 0;
+  // count++;
+  // std::cout << "N" << count << std::endl;
 
   // Need to be in executable dir it seems ...
   // getcwd (char *__buf, size_t __size)
@@ -77,14 +79,15 @@ int test_simbin_HelloWorld() {
   // Draw the graph !
   gexpect->DrawClone();
 
-
   // Create new function to perform fit
   TF1 fode2("fittet ODE par;time;Y Vals",the_ode,0,1,2);
   // "reset" parameters to start valued differing from reference
   fode2.SetParameters(0.5, -0.5);
   fode2.SetLineColor(kRed); fode2.SetLineStyle(2);
-  // Fit it to the graph
+  // Fit it to the graph and measure the needed time
+  auto t0 = high_resolution_clock::now();
   auto fitResPtr = gexpect->Fit(&fode2, "S");
+  auto t1 = high_resolution_clock::now();
   // ... and retrieve fit results
   fitResPtr->Print(); // print fit results
   fode2.DrawClone("Same");
@@ -96,6 +99,11 @@ int test_simbin_HelloWorld() {
   leg.AddEntry(gexpect,"Exp. OM ODE solution");
   leg.AddEntry(&fode2,"Fitted OM ODE");
   leg.DrawClone("Same");
+
+  std::cout <<
+   "\n=====================================\n" <<
+   "Duration for Fit(&fode2, \"S\"): " << duration_cast<milliseconds>(t1-t0).count() << "msec" <<
+   "\n=====================================\n";
 
   return 0;
 }
