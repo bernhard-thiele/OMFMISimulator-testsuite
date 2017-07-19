@@ -9,6 +9,8 @@ test2.lua \
 test3.lua \
 Importxml.lua \
 ImportExport.lua \
+cs_HelloWorld_Reset.lua \
+me_HelloWorld_Reset.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \
