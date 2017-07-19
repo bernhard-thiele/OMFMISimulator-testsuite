@@ -10,6 +10,8 @@
 
 #include "../../install/include/OMSimulator.h"
 
+void* model;
+
 // der(x) = p[1]*x;
 // x(0) = p[0];
 double the_ode(double* vars, double* pars) {
@@ -17,11 +19,6 @@ double the_ode(double* vars, double* pars) {
   count++;
   const char* version = oms_getVersion();
   std::cout << "N" << count << " : " << version << std::endl;
-  void* model = oms_newModel();
-  oms_setTempDirectory(".");
-
-  oms_instantiateFMU(model, "models/cs_HelloWorld.fmu", "HelloWorld");
-  //oms_describe(model);
 
   oms_setReal(model, "HelloWorld.x_start", pars[0]);
   oms_setReal(model, "HelloWorld.a", pars[1]);
@@ -40,16 +37,15 @@ double the_ode(double* vars, double* pars) {
   //   oms_getCurrentTime(model, &tcur);
   // }
   double x = oms_getReal(model, "HelloWorld.x");
-  oms_terminate(model);
-  std::cout << "BEFORE oms_unload" << std::endl;
-  oms_unload(model);
-  std::cout << "After oms_unload" << std::endl;
-
+  oms_reset(model);
   return x;
 }
 
-int test_cs_HelloWorld() {
-  std::cout << "START test_cs_HelloWorld\n";
+int test_cs_HelloWorld2() {
+  model = oms_newModel();
+  oms_setTempDirectory(".");
+  oms_instantiateFMU(model, "models/cs_HelloWorld.fmu", "HelloWorld");
+  //oms_describe(model);
 
   TCanvas *c1 = new TCanvas("c1","tofind",700,500);
 
@@ -66,14 +62,14 @@ int test_cs_HelloWorld() {
   gexpect->DrawClone();
 
 
-  std::cout << "Create new function to perform fit\n";
+  // Create new function to perform fit
   TF1 fode2("fittet ODE par;time;Y Vals",the_ode,0,1,2);
   // "reset" parameters to start valued differing from reference
   fode2.SetParameters(0.5, -0.5);
   fode2.SetLineColor(kRed); fode2.SetLineStyle(2);
-  std::cout << "Fit it to the graph\n";
+  // Fit it to the graph
   auto fitResPtr = gexpect->Fit(&fode2, "S");
-  std::cout << "... and retrieve fit results\n";
+  // ... and retrieve fit results
   fitResPtr->Print(); // print fit results
   fode2.DrawClone("Same");
 
@@ -85,5 +81,7 @@ int test_cs_HelloWorld() {
   leg.AddEntry(&fode2,"Fitted OM ODE");
   leg.DrawClone("Same");
 
+  oms_terminate(model);
+  oms_unload(model);
   return 0;
 }

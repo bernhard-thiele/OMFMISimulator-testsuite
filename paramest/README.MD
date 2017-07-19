@@ -10,3 +10,6 @@ helper script to ensure that dynamic libraries are loaded into root, e.g.:
 
 ## Dependencies
 - ROOT, [https://root.cern.ch/](https://root.cern.ch/)
+
+## Notes
+- Use `fmi2reset` for resetting FMU?

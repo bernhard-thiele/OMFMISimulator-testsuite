@@ -31,6 +31,10 @@ std::string exec(const char* cmd) {
 // der(x) = p[1]*x;
 // x(0) = p[0];
 double the_ode(double* vars, double* pars) {
+  static int count = 0;
+  count++;
+  std::cout << "N" << count << std::endl;
+
   // Need to be in executable dir it seems ...
   // getcwd (char *__buf, size_t __size)
   chdir("models/simbin_HelloWorld");
