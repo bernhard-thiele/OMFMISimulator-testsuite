@@ -1,5 +1,7 @@
 project(paramest)
 
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
 include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/src ${FMILibrary_INCLUDEDIR})
 link_directories(${FMILibrary_LIBRARYDIR} ${Boost_LIBRARY_DIRS})
 
