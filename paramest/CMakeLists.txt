@@ -3,8 +3,8 @@ project(paramest)
 include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/src ${FMILibrary_INCLUDEDIR})
 link_directories(${FMILibrary_LIBRARYDIR} ${Boost_LIBRARY_DIRS})
 
+# BEGIN CERN ROOT related definitions
 # Adapted from https://root.cern.ch/how/integrate-root-my-project-cmake
-
 #---Locate the ROOT package and defines a number of variables (e.g. ROOT_INCLUDE_DIRS)
 find_package(ROOT REQUIRED COMPONENTS RIO Net)
 
@@ -21,6 +21,7 @@ ROOT_GENERATE_DICTIONARY(G__Event Event.h LINKDEF EventLinkDef.h)
 #---Create  a main program using the library
 # add_executable(Main MainEvent.cxx)
 # target_link_libraries(Main Event)
+# END CERN ROOT related definitions
 
 add_executable(exampleErrorGraph exampleErrorGraph.C)
 target_link_libraries(exampleErrorGraph ${ROOT_LIBRARIES})
@@ -34,13 +35,20 @@ add_executable(test_cs_HelloWorld test_cs_HelloWorld.C)
 target_link_libraries(test_cs_HelloWorld OMSimulatorLib ${FMILibrary_LIBRARY} ${CMAKE_DL_LIBS} ${Boost_LIBRARIES} ${ROOT_LIBRARIES})
 install(TARGETS test_cs_HelloWorld DESTINATION bin)
 
-add_executable(test_cs_HelloWorld test_cs_HelloWorld.C)
-target_link_libraries(test_cs_HelloWorld OMSimulatorLib ${FMILibrary_LIBRARY} ${CMAKE_DL_LIBS} ${Boost_LIBRARIES} ${ROOT_LIBRARIES})
-install(TARGETS test_cs_HelloWorld DESTINATION bin)
-
 # Skip executables below (can be added similarly as above if needed)
 # test_cs_HelloWorld_withoutReset_SLOW
 # test_simbin_HelloWorld
 
 # Copy test FMUs to correct relative installation folder
 install(FILES ../FMUs/cs_HelloWorld.fmu DESTINATION FMUs)
+
+# BEGIN CERES related definitions
+# Adapted from http://ceres-solver.org/installation.html
+# Working with an installed Ceres (make install)
+find_package(Ceres REQUIRED)
+include_directories(${CERES_INCLUDE_DIRS})
+
+# helloworld
+add_executable(exampleCeresHelloWorld exampleCeresHelloWorld.cc)
+target_link_libraries(exampleCeresHelloWorld ${CERES_LIBRARIES})
+# END CERES related definitions
