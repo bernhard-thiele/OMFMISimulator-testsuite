@@ -11,7 +11,7 @@
 
 void test_cs_BouncingBall() {
   const char* version = oms_getVersion();
-  std::cout << version << std::endl;
+  //std::cout << version << std::endl;
 
   void* model = oms_newModel();
   oms_setTempDirectory(".");
@@ -31,7 +31,6 @@ void test_cs_BouncingBall() {
 // Result:
 //
 // Processing test_cs_BouncingBall.C...
-// OMSimulator v0.0.0-109-g0901c2c
 // # FMU instances
 // BouncingBall
 //   - FMI 2.0 CS
