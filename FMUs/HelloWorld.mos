@@ -10,5 +10,3 @@ end HelloWorld;
 
 buildModelFMU(HelloWorld, version="2.0", fmuType="me", fileNamePrefix="me_HelloWorld", platforms={"static"}); getErrorString();
 buildModelFMU(HelloWorld, version="2.0", fmuType="cs", fileNamePrefix="cs_HelloWorld", platforms={"static"}); getErrorString();
-mkdir("simbin_HelloWorld"); getErrorString();
-
