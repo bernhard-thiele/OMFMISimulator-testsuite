@@ -50,7 +50,16 @@ install(FILES ../FMUs/cs_HelloWorld.fmu DESTINATION FMUs)
 find_package(Ceres REQUIRED)
 include_directories(${CERES_INCLUDE_DIRS})
 
-# helloworld
+# helloworld from Ceres project
 add_executable(exampleCeresHelloWorld exampleCeresHelloWorld.cc)
 target_link_libraries(exampleCeresHelloWorld ${CERES_LIBRARIES})
+install(TARGETS test_ceres_cfunc_HelloWorld DESTINATION bin)
+# Curve fitting example from Ceres project
+add_executable(curve_fitting curve_fitting.cc)
+target_link_libraries(curve_fitting ${CERES_LIBRARIES})
+install(TARGETS test_ceres_cfunc_HelloWorld DESTINATION bin)
 # END CERES related definitions
+
+add_executable(test_ceres_cfunc_HelloWorld test_ceres_cfunc_HelloWorld.C)
+target_link_libraries(test_ceres_cfunc_HelloWorld ${ROOT_LIBRARIES} ${CERES_LIBRARIES})
+install(TARGETS test_ceres_cfunc_HelloWorld DESTINATION bin)
