@@ -53,13 +53,17 @@ include_directories(${CERES_INCLUDE_DIRS})
 # helloworld from Ceres project
 add_executable(exampleCeresHelloWorld exampleCeresHelloWorld.cc)
 target_link_libraries(exampleCeresHelloWorld ${CERES_LIBRARIES})
-install(TARGETS test_ceres_cfunc_HelloWorld DESTINATION bin)
+install(TARGETS exampleCeresHelloWorld DESTINATION bin)
 # Curve fitting example from Ceres project
 add_executable(curve_fitting curve_fitting.cc)
 target_link_libraries(curve_fitting ${CERES_LIBRARIES})
-install(TARGETS test_ceres_cfunc_HelloWorld DESTINATION bin)
+install(TARGETS curve_fitting DESTINATION bin)
 # END CERES related definitions
 
 add_executable(test_ceres_cfunc_HelloWorld test_ceres_cfunc_HelloWorld.C)
 target_link_libraries(test_ceres_cfunc_HelloWorld ${ROOT_LIBRARIES} ${CERES_LIBRARIES})
 install(TARGETS test_ceres_cfunc_HelloWorld DESTINATION bin)
+
+add_executable(test_ceres_cs_HelloWorld test_ceres_cs_HelloWorld.C)
+target_link_libraries(test_ceres_cs_HelloWorld OMSimulatorLib ${FMILibrary_LIBRARY} ${CMAKE_DL_LIBS} ${Boost_LIBRARIES} ${ROOT_LIBRARIES} ${CERES_LIBRARIES})
+install(TARGETS test_ceres_cs_HelloWorld DESTINATION bin)

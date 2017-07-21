@@ -23,10 +23,12 @@ gave the following measurements with the interpreted test cases:
 | test_cs_HelloWorld.C                 | 4648                  | 1      |
 | test_simbin_HelloWorld               | 96438                 | 20.7   |
 | test_cs_HelloWorld_withoutReset_SLOW | 350244                | 78.4   |
+| test_ceres_cs_HelloWorld.C           | 380                   | 0.08   |
 | test_cfunc_HelloWorld.C              | 27                    | 0.006  |
+| test_cfunc_HelloWorld.C              | 2                     | 0.0004 |
 
 ## Other notes
 
 - https://root.cern.ch/how/integrate-root-my-project-cmake
 - http://ceres-solver.org/
-  - 541968497a0cfb34673c17b3f63a1ef183be7de0
+  - Using git-hash: 541968497a0cfb34673c17b3f63a1ef183be7de0
