@@ -15,8 +15,8 @@ version = getVersion()
 setTempDirectory(".")
 model = loadModel('ConnectedFmu.xml')
 
-setReal(model, "sourceA.A", 0.5)
-setReal(model, "sourceA.omega", 2.0)
+--setReal(model, "sourceA.A", 0.5)
+--setReal(model, "sourceA.omega", 2.0)
 
 initialize(model)
 simulate(model)

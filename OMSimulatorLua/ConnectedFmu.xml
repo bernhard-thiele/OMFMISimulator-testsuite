@@ -3,7 +3,10 @@
 	<SubModels>
 		<SubModel Name="adder1" ModelFile="../FMUs/me_adder1.fmu" />
 		<SubModel Name="adder2" ModelFile="../FMUs/me_adder1.fmu" />
-		<SubModel Name="sourceA" ModelFile="../FMUs/me_source1.fmu" />
+		<SubModel Name="sourceA" ModelFile="../FMUs/me_source1.fmu">
+            <ModelParams Name="A" Value="0.5" />
+			<ModelParams Name="omega" Value="2" />
+        </SubModel>
 		<SubModel Name="sourceB" ModelFile="../FMUs/me_source1.fmu" />
 	</SubModels>
 	<Connections>
