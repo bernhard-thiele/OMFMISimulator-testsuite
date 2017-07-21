@@ -15,6 +15,7 @@ model = newModel()
 setTempDirectory(".")
 
 instantiateFMU(model, "../FMUs/me_test1.fmu", "test1")
+setSolverMethod(model, "test1", "cvode")
 describe(model)
 
 setStopTime(model, 2.1)
@@ -29,7 +30,7 @@ unload(model)
 -- Result:
 -- # FMU instances
 -- test1
---   - FMI 2.0 ME
+--   - FMI 2.0 ME (solver: cvode)
 --   - path: ../FMUs/me_test1.fmu
 --   - GUID: {5daf3328-7e1e-4ed4-af75-84ebb83eb29e}
 --   - tool: OpenModelica Compiler OMCompiler v1.12.0-dev.395+gdeeabde

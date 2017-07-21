@@ -43,7 +43,7 @@ unload(model2)
 -- Result:
 -- # FMU instances
 -- adder
---   - FMI 2.0 ME
+--   - FMI 2.0 ME (solver: euler)
 --   - path: ../FMUs/me_adder1.fmu
 --   - GUID: {bd121558-6b16-4944-819d-dd5fc0b9b8ea}
 --   - tool: OpenModelica Compiler OMCompiler v1.12.0-dev.395+gdeeabde
@@ -53,7 +53,7 @@ unload(model2)
 --   - output interface:
 --     - output y
 -- sourceA
---   - FMI 2.0 ME
+--   - FMI 2.0 ME (solver: euler)
 --   - path: ../FMUs/me_source1.fmu
 --   - GUID: {a31d622a-f33e-4172-9c76-96665d8d1b60}
 --   - tool: OpenModelica Compiler OMCompiler v1.12.0-dev.395+gdeeabde
@@ -61,7 +61,7 @@ unload(model2)
 --   - output interface:
 --     - output y
 -- sourceB
---   - FMI 2.0 ME
+--   - FMI 2.0 ME (solver: euler)
 --   - path: ../FMUs/me_source1.fmu
 --   - GUID: {a31d622a-f33e-4172-9c76-96665d8d1b60}
 --   - tool: OpenModelica Compiler OMCompiler v1.12.0-dev.395+gdeeabde
