@@ -28,6 +28,6 @@ terminate(model)
 unload(model)
 
 -- Result:
--- adder1.y at 2.1: 1.8268267226824
--- adder2.y at 2.1: 2.8123845910705
+-- adder1.y at 2.1: 0.54162379186909
+-- adder2.y at 2.1: 1.564940364302
 -- endResult
