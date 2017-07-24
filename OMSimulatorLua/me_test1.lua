@@ -49,4 +49,5 @@ unload(model)
 --
 -- ## Simulation
 --
+-- Logging information has been saved to "omsllog.txt"
 -- endResult
