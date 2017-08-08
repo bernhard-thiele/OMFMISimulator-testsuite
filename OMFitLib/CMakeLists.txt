@@ -10,7 +10,7 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 # make test ARGS="-V -R some-specific-test"
 
 
-# include_directories(${CERES_INCLUDE_DIRS})
+include_directories(${CERES_INCLUDE_DIRS})
 include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/src ${FMILibrary_INCLUDEDIR})
 link_directories(${FMILibrary_LIBRARYDIR} ${Boost_LIBRARY_DIRS})
 
@@ -20,4 +20,10 @@ add_executable(test_cs_HelloWorld_Fit test_cs_HelloWorld_Fit.c)
 target_link_libraries(test_cs_HelloWorld_Fit ${OMFITTEST_LIBRARIES})
 add_test(NAME test_cs_HelloWorld_Fit
   COMMAND test_cs_HelloWorld_Fit
+  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+
+add_executable(test_cs_Lin2DimODE_Fit test_cs_Lin2DimODE_Fit.cpp)
+target_link_libraries(test_cs_Lin2DimODE_Fit ${OMFITTEST_LIBRARIES})
+add_test(NAME test_cs_Lin2DimODE_Fit
+  COMMAND test_cs_Lin2DimODE_Fit
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})

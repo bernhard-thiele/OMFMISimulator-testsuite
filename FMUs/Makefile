@@ -5,6 +5,7 @@ parameterTest.mos \
 source1.mos \
 test1.mos \
 HelloWorld.mos \
+Lin2DimODE.mos \
 
 # Dependency files that are not .mo .mos or Makefile
 # Add them here or they will be cleaned.
