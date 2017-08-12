@@ -1,0 +1,26 @@
+// name: CS_BouncingBall
+// keywords: OMSimulator Modelica API
+// status: correct
+
+vars := {
+  "v",
+  "der(v)",
+  "h",
+  "der(h)",
+  "ground"
+};
+
+loadFile("../../src/OMSimulatorModelica/OMSimulator/package.mo");
+echo(false);
+simulate(OMSimulator.Examples.CS_BouncingBall, startTime=0, stopTime=1); getErrorString();
+echo(true);
+OpenModelica.Scripting.diffSimulationResults("../ReferenceFiles/cs_BouncingBall.csv",
+  "BouncingBall_res.csv", "BouncingBall_diff", vars=vars); getErrorString();
+
+// Result:
+// {"v","der(v)","h","der(h)","ground"}
+// true
+// true
+// (true,{})
+// ""
+// endResult
