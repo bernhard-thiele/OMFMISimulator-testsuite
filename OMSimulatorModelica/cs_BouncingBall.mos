@@ -11,8 +11,15 @@ vars := {
 };
 
 loadFile("../../src/OMSimulatorModelica/OMSimulator/package.mo");
+
 echo(false);
-simulate(OMSimulator.Examples.CS_BouncingBall, startTime=0, stopTime=1); getErrorString();
+loadString("
+model CS_BouncingBall
+  extends OMSimulator.Examples.CS_BouncingBall(filename=\"../FMUs/cs_BouncingBall.fmu\");
+end CS_BouncingBall;
+"); getErrorString();
+
+simulate(CS_BouncingBall, startTime=0, stopTime=1); getErrorString();
 echo(true);
 OpenModelica.Scripting.diffSimulationResults("../ReferenceFiles/cs_BouncingBall.csv",
   "BouncingBall_res.csv", "BouncingBall_diff", vars=vars); getErrorString();
